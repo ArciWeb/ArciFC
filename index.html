@@ -2,17 +2,17 @@
 <html lang="sk">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>ArciFC</title>
+<title>FCArci</title>
 <meta name="theme-color" content="#06111f">
-<meta name="application-name" content="ArciFC">
+<meta name="application-name" content="FCArci">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" href="ArciFC_small.png">
-<link rel="apple-touch-icon" href="ArciFC.png">
+<link rel="icon" type="image/png" href="FCArci_small.png">
+<link rel="apple-touch-icon" href="FCArci.png">
 <style>
 :root{color-scheme:dark;--bg:#06111f;--panel:#0a1b2e;--panel2:#0d2239;--line:#17476b;--txt:#e5f1ff;--muted:#9ab3cc;--blue:#1688ff;--green:#23d6a0;--yellow:#d9f75a}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#06111f,#07182b 60%,#081222);color:var(--txt);font:14px system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{background:#102b46;color:var(--txt);border:1px solid #245578;border-radius:8px;padding:8px 11px;cursor:pointer}button:hover{background:#174269}input,select{background:#061525;color:var(--txt);border:1px solid #245578;border-radius:7px;padding:8px;min-width:0}header{display:flex;align-items:center;gap:16px;padding:12px 18px;background:#08182a;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px;margin-right:auto}.ball{font-size:30px}.brand h1{font-size:21px;margin:0}.brand small{color:var(--muted)}.status{font-size:12px;color:var(--green);border:1px solid var(--line);padding:8px 12px;border-radius:8px}.page{padding:14px;max-width:100%;margin:auto}.panel{background:linear-gradient(145deg,#0b1d31,#07182a);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:11px;box-shadow:0 8px 24px #0002}.panel h2{font-size:14px;margin:0 0 9px;color:#cce5ff}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px}.filterbox{border:1px solid #183e5e;border-radius:8px;padding:8px;max-height:160px;overflow:auto}.filterbox strong{display:block;color:#a9c9e9;margin-bottom:5px;font-size:12px}.checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:5px}.checkgrid label{display:flex;align-items:center;gap:6px;color:#cce0f5;font-size:12px;cursor:pointer}.checkgrid input{accent-color:var(--blue)}.searchbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.searchbar input{flex:1;min-width:170px}.tablewrap{border:1px solid var(--line);border-radius:10px;overflow:auto;max-height:60vh;background:#061526;position:relative}.tablewrap table{border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:12px;width:max-content;min-width:100%}th,td{padding:5px 4px;border-right:1px solid #153651;border-bottom:1px solid #153651;text-align:center;min-width:24px}th{background:#102942;color:#d6eaff;position:sticky;top:0;z-index:4}td{background:#07192a}tbody tr:nth-child(even) td{background:#0a2034}tbody tr:hover td{background:#103453}th:nth-child(1),td:nth-child(1){position:sticky;left:0;z-index:6;min-width:32px;width:32px;max-width:32px;padding-left:2px;padding-right:2px}th:nth-child(2),td:nth-child(2){position:sticky;left:32px;z-index:6;min-width:100px;width:100px;max-width:100px;text-align:left}th:nth-child(n+3),td:nth-child(n+3){min-width:28px;width:32px;max-width:52px;padding:4px 2px} th.money,td.money{min-width:96px!important;width:108px!important;max-width:150px!important} th.club,td.club{min-width:125px!important;width:138px!important;max-width:190px!important}th:nth-child(-n+2){background:#153652}td:nth-child(-n+2){background:#0b2740}td[contenteditable=true]{outline:none;cursor:text}td[contenteditable=true]:focus{box-shadow:inset 0 0 0 2px var(--blue);background:#153c5e!important}th .abbr{display:block;color:#91b8dc;font-size:10px;margin-top:3px}.namecell{min-width:150px;text-align:left}.pos{font-weight:700;color:var(--yellow)}.bottom{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.muted{color:var(--muted);font-size:12px}.slotgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.slot{border:1px solid #1c4567;border-radius:8px;padding:10px}.slot h3{margin:0 0 8px;font-size:13px}.slot input{width:100%;margin-bottom:7px}.slot .toolbar button{flex:1}.danger{border-color:#7f3449;background:#3a1725}.primary{background:#075cb4;border-color:#1688ff}.good{color:var(--green)}.warn{color:#ffce72}.statsline{display:flex;gap:16px;flex-wrap:wrap;color:#b6d1ea;font-size:12px;padding:9px 2px}.hidden{display:none!important}.small{font-size:11px}.footer{padding:15px;text-align:center;color:#718da8;font-size:11px}
 
-/* ArciFC themes: readable foreground/background contrast */
+/* FCArci themes: readable foreground/background contrast */
 :root{--theme-bg:#06111f;--theme-panel:#0a1b2e;--theme-panel2:#0d2239;--theme-line:#17476b;--theme-text:#e5f1ff;--theme-muted:#9ab3cc;--theme-accent:#1688ff;--theme-table:#07192a;--theme-table-alt:#0a2034;--theme-head:#102942;--theme-sticky:#0b2740;--theme-button:#102b46;--theme-input:#061525}
 html[data-theme="inferno"]{--theme-bg:#1b080c;--theme-panel:#2b1017;--theme-panel2:#40151d;--theme-line:#873344;--theme-text:#fff0f1;--theme-muted:#e0aab2;--theme-accent:#ff4057;--theme-table:#210d12;--theme-table-alt:#351219;--theme-head:#4a1822;--theme-sticky:#35121b;--theme-button:#4a1822;--theme-input:#200b10}
 html[data-theme="sky"]{--theme-bg:#071b2b;--theme-panel:#0d2c43;--theme-panel2:#123b58;--theme-line:#287ba5;--theme-text:#effaff;--theme-muted:#b2d8eb;--theme-accent:#43c5ff;--theme-table:#092338;--theme-table-alt:#10314a;--theme-head:#164563;--theme-sticky:#10334c;--theme-button:#12405e;--theme-input:#082034}
@@ -51,8 +51,8 @@ tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
 </head>
 <body>
 <header>
- <div class="brand"><span class="ball">⚽</span><div><h1>ArciFC</h1><small>Prehľad a analýza kariéry</small></div></div>
- <span class="status" id="saveStatus">● Autosave aktívne</span><button onclick="installApp()" id="installButton" class="hidden">＋ Inštalovať ArciFC</button>
+ <div class="brand"><span class="ball">⚽</span><div><h1>FCArci</h1><small>Prehľad a analýza kariéry</small></div></div>
+ <span class="status" id="saveStatus">● Autosave aktívne</span><button onclick="installApp()" id="installButton" class="hidden">＋ Inštalovať FCArci</button>
  <button onclick="showSection('stats')">▦ Štatistiky</button><button onclick="showSection('settings')">⚙ Nastavenia a sloty</button>
  <button onclick="addPlayer()">＋ Hráč</button>
 </header>
@@ -70,7 +70,7 @@ tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
   <div class="statsline"><span id="playerCount">Hráči: 0</span><span id="columnCount">Zobrazené štatistiky: 0</span><span id="autosaveInfo">Autosave do pamäte zariadenia</span><span class="muted">Klikni do bunky pre ručnú úpravu.</span></div>
  </div>
  <div class="panel" id="financialSummary">
-  <h2>Náklady na prestupy a platy podľa sezóny</h2>
+  <h2>Finančný prehľad podľa sezóny</h2>
   <div id="financialRows" class="bottom"></div>
  </div>
 </section>
@@ -80,7 +80,7 @@ tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
  <div class="panel"><h2>Import JSON do aktuálnej hry</h2><p class="muted">Načítanie JSON prepíše aktuálne dáta až po potvrdení. Podporuje JSON export z tejto aplikácie.</p><div class="toolbar"><input type="file" id="jsonFile" accept=".json,application/json"><button class="primary" onclick="importJSON()">Vložiť / importovať JSON</button><button onclick="exportCurrent()">Stiahnuť aktuálne dáta (.json)</button></div></div>
  <div class="panel"><h2>Legenda skratiek</h2><div class="checkgrid" id="legend"></div></div><div class="panel"><h2>Pokročilé</h2><p class="muted">Vymazanie odstráni aktívnu kariéru a lokálne uložené dáta. Pred pokračovaním si môžeš stiahnuť JSON zálohu.</p><div class="toolbar"><button onclick="exportCurrent()">Stiahnuť zálohu pred vymazaním</button><button class="danger" onclick="deleteDatabase()">Vymazať databázu</button></div></div>
 </section>
-<div class="footer">ArciFC · lokálne dáta v tomto prehliadači · odporúčame pravidelne sťahovať JSON zálohu</div>
+<div class="footer">FCArci · lokálne dáta v tomto prehliadači · odporúčame pravidelne sťahovať JSON zálohu</div>
 </main>
 <script>
 const CORE=[
@@ -179,11 +179,15 @@ function renderFinancialSummary(){
   const season=i+1, label=`${2024+season}/${String(2025+season).slice(-2)}`;
   const spend=state.players.reduce((n,p)=>n+(seasonIndex(p.arrival)===season?moneyNumber(p.price):0),0);
   const salaries=state.players.reduce((n,p)=>n+(playerInSeason(p,season)?moneyNumber(p['salary'+season]):0),0);
-  return `<div class="slot"><h3>${label}</h3><div>Náklady na prestupy: <b>${fmtMoney(spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(salaries)}</b></div></div>`;
+  // Sale income belongs to the season indicated by the departure date.
+  // A year-only departure (e.g. 26) is mid-season and belongs to that season;
+  // a slash season (e.g. 26/27) means departure at that season's start.
+  const saleIncome=state.players.reduce((n,p)=>n+(seasonIndex(p.departure,true)===season?moneyNumber(p.sale):0),0);
+  return `<div class="slot"><h3>${label}</h3><div>Náklady na prestupy: <b>${fmtMoney(spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(salaries)}</b></div><div>Zisk z predaja: <b>${fmtMoney(saleIncome)}</b></div><div>Čisté saldo: <b>${fmtMoney(saleIncome-spend-salaries)}</b></div></div>`;
  }).join('');
 }
 const THEMES=[
- {id:'default',name:'Pôvodná — ArciFC',swatch:'#1688ff'},
+ {id:'default',name:'Pôvodná — FCArci',swatch:'#1688ff'},
  {id:'inferno',name:'Inferno — červená',swatch:'#ff4057'},
  {id:'sky',name:'Nebeská — svetlomodrá',swatch:'#43c5ff'},
  {id:'green',name:'Zelená',swatch:'#35df91'},
@@ -200,7 +204,7 @@ function applyTheme(theme, persist=true){
 function chooseTheme(theme){applyTheme(theme,true)}
 function deleteDatabase(){
  if(!confirm('Naozaj chceš vymazať aktívnu kariéru a všetky jej uložené údaje?'))return;
- if(!confirm('POSLEDNÉ POTVRDENIE: túto akciu nemožno vrátiť späť. Vymazať databázu ArciFC?'))return;
+ if(!confirm('POSLEDNÉ POTVRDENIE: túto akciu nemožno vrátiť späť. Vymazať databázu FCArci?'))return;
  state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);state.slots=[null,null,null,null];
  Promise.all([0,1,2,3].map(i=>dbSet('slot_'+i,null))).then(()=>dbSet('current',allData())).then(()=>{alert('Databáza kariéry bola vymazaná.');buildFilters();renderTable();renderSlots();renderFinancialSummary();}).catch(()=>alert('Nepodarilo sa vymazať údaje.'));
 }
@@ -255,9 +259,9 @@ async function loadSlot(i){
 }
 async function deleteSlot(i){if(!confirm(`Naozaj vymazať slot ${i+1} („${state.slotNames[i]}“)?`))return;state.slots[i]=null;try{await dbSet('slot_'+i,null);await dbSet('current',allData());renderSlots()}catch(e){alert('Slot sa nepodarilo vymazať z úložiska.')}}
 function downloadBlob(name,obj){let blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function downloadSlot(i){if(!state.slots[i]){alert('Slot je prázdny.');return}downloadBlob(`ArciFC-slot-${i+1}.json`,state.slots[i])}
-function exportCurrent(){downloadBlob('ArciFC-zaloha.json',allData())}
-function uploadSlot(i){let f=document.getElementById('slotfile'+i);f.onchange=async()=>{if(!f.files[0])return;try{let d=JSON.parse(await f.files[0].text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm(`Vložiť JSON do slotu ${i+1}?`))return;state.slots[i]=d;await persistAllSlots();renderSlots()}catch(e){alert('Súbor nie je platná záloha ArciFC.')}finally{f.value=''}};f.click()}
+function downloadSlot(i){if(!state.slots[i]){alert('Slot je prázdny.');return}downloadBlob(`FCArci-slot-${i+1}.json`,state.slots[i])}
+function exportCurrent(){downloadBlob('FCArci-zaloha.json',allData())}
+function uploadSlot(i){let f=document.getElementById('slotfile'+i);f.onchange=async()=>{if(!f.files[0])return;try{let d=JSON.parse(await f.files[0].text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm(`Vložiť JSON do slotu ${i+1}?`))return;state.slots[i]=d;await persistAllSlots();renderSlots()}catch(e){alert('Súbor nie je platná záloha FCArci.')}finally{f.value=''}};f.click()}
 async function importJSON(){let f=document.getElementById('jsonFile').files[0];if(!f){alert('Najprv vyber JSON súbor.');return}try{let d=JSON.parse(await f.text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm('Import nahradí aktuálnu tabuľku a nastavenia. Pokračovať?'))return;applyData(d);await persistAllSlots();buildFilters();renderTable();renderSlots();alert('JSON bol načítaný.')}catch(e){alert('Nepodarilo sa načítať JSON. Skontroluj, či ide o zálohu tejto aplikácie.')} }
 function applyData(d){state.players=d.players.map(p=>({...blankPlayer(),...p}));state.visible=Array.isArray(d.visible)?d.visible.filter(k=>columns.some(c=>c.key===k)||['GC','ZC','AC'].includes(k)):columns.filter(c=>!c.core).map(c=>c.key);state.slotNames=Array.isArray(d.slotNames)?[...d.slotNames]:state.slotNames;state.slots=Array.isArray(d.slots)?[...d.slots]:state.slots;while(state.slots.length<4)state.slots.push(null);state.slots=state.slots.slice(0,4);state.theme=d.theme||state.theme||'default';applyTheme(state.theme,false);state.sortKey=d.sortKey||'GC';state.sortDir=d.sortDir||'desc';document.getElementById('sortKey').value=state.sortKey;document.getElementById('sortDir').value=state.sortDir;if(d.search)document.getElementById('search').value=d.search;if(d.seasonFilter&&document.getElementById('seasonFilter'))document.getElementById('seasonFilter').value=d.seasonFilter;state.restoreScroll=[d.scrollTop||0,d.scrollLeft||0];state.restoreSection=d.section||'stats'}
 function setupSort(){let s=document.getElementById('sortKey');const seen=new Set();const sortable=[{key:'pos',label:'Pozícia (GK → ST)'},{key:'name',label:'Meno hráča'},...columns.filter(c=>['number','computed','aggregate','salaryTotal'].includes(c.type)||['price','sale'].includes(c.key)).map(c=>({key:c.key,label:c.label+' ('+c.abbr+')'}))].filter(c=>{if(seen.has(c.key))return false;seen.add(c.key);return true});s.innerHTML='<option value="">Zoradiť podľa…</option>'+sortable.map(c=>`<option value="${c.key}">${esc(c.label)}</option>`).join('')}
