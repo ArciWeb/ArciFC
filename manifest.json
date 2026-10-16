@@ -1,0 +1,27 @@
+{
+  "id": "/ArciFC/",
+  "name": "ArciFootball Club",
+  "short_name": "ArciFC",
+  "description": "Prehľad a analýza hráčov vo FIFA kariére",
+  "lang": "sk",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#06111f",
+  "theme_color": "#06111f",
+  "icons": [
+    {
+      "src": "./ArciFC_small.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./ArciFC.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
