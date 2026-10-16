@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ArciFC</title>
+<meta name="theme-color" content="#06111f">
+<meta name="application-name" content="ArciFC">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="ArciFC_small.png">
+<link rel="apple-touch-icon" href="ArciFC.png">
+<style>
+:root{color-scheme:dark;--bg:#06111f;--panel:#0a1b2e;--panel2:#0d2239;--line:#17476b;--txt:#e5f1ff;--muted:#9ab3cc;--blue:#1688ff;--green:#23d6a0;--yellow:#d9f75a}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#06111f,#07182b 60%,#081222);color:var(--txt);font:14px system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{background:#102b46;color:var(--txt);border:1px solid #245578;border-radius:8px;padding:8px 11px;cursor:pointer}button:hover{background:#174269}input,select{background:#061525;color:var(--txt);border:1px solid #245578;border-radius:7px;padding:8px;min-width:0}header{display:flex;align-items:center;gap:16px;padding:12px 18px;background:#08182a;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px;margin-right:auto}.ball{font-size:30px}.brand h1{font-size:21px;margin:0}.brand small{color:var(--muted)}.status{font-size:12px;color:var(--green);border:1px solid var(--line);padding:8px 12px;border-radius:8px}.page{padding:14px;max-width:100%;margin:auto}.panel{background:linear-gradient(145deg,#0b1d31,#07182a);border:1px solid var(--line);border-radius:11px;padding:12px;margin-bottom:11px;box-shadow:0 8px 24px #0002}.panel h2{font-size:14px;margin:0 0 9px;color:#cce5ff}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:7px}.filterbox{border:1px solid #183e5e;border-radius:8px;padding:8px;max-height:160px;overflow:auto}.filterbox strong{display:block;color:#a9c9e9;margin-bottom:5px;font-size:12px}.checkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:5px}.checkgrid label{display:flex;align-items:center;gap:6px;color:#cce0f5;font-size:12px;cursor:pointer}.checkgrid input{accent-color:var(--blue)}.searchbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.searchbar input{flex:1;min-width:170px}.tablewrap{border:1px solid var(--line);border-radius:10px;overflow:auto;max-height:60vh;background:#061526;position:relative}.tablewrap table{border-collapse:separate;border-spacing:0;white-space:nowrap;font-size:12px;width:max-content;min-width:100%}th,td{padding:5px 4px;border-right:1px solid #153651;border-bottom:1px solid #153651;text-align:center;min-width:24px}th{background:#102942;color:#d6eaff;position:sticky;top:0;z-index:4}td{background:#07192a}tbody tr:nth-child(even) td{background:#0a2034}tbody tr:hover td{background:#103453}th:nth-child(1),td:nth-child(1){position:sticky;left:0;z-index:6;min-width:32px;width:32px;max-width:32px;padding-left:2px;padding-right:2px}th:nth-child(2),td:nth-child(2){position:sticky;left:32px;z-index:6;min-width:100px;width:100px;max-width:100px;text-align:left}th:nth-child(n+3),td:nth-child(n+3){min-width:28px;width:32px;max-width:52px;padding:4px 2px} th.money,td.money{min-width:96px!important;width:108px!important;max-width:150px!important} th.club,td.club{min-width:125px!important;width:138px!important;max-width:190px!important}th:nth-child(-n+2){background:#153652}td:nth-child(-n+2){background:#0b2740}td[contenteditable=true]{outline:none;cursor:text}td[contenteditable=true]:focus{box-shadow:inset 0 0 0 2px var(--blue);background:#153c5e!important}th .abbr{display:block;color:#91b8dc;font-size:10px;margin-top:3px}.namecell{min-width:150px;text-align:left}.pos{font-weight:700;color:var(--yellow)}.bottom{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.muted{color:var(--muted);font-size:12px}.slotgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.slot{border:1px solid #1c4567;border-radius:8px;padding:10px}.slot h3{margin:0 0 8px;font-size:13px}.slot input{width:100%;margin-bottom:7px}.slot .toolbar button{flex:1}.danger{border-color:#7f3449;background:#3a1725}.primary{background:#075cb4;border-color:#1688ff}.good{color:var(--green)}.warn{color:#ffce72}.statsline{display:flex;gap:16px;flex-wrap:wrap;color:#b6d1ea;font-size:12px;padding:9px 2px}.hidden{display:none!important}.small{font-size:11px}.footer{padding:15px;text-align:center;color:#718da8;font-size:11px}
+
+/* ArciFC themes: readable foreground/background contrast */
+:root{--theme-bg:#06111f;--theme-panel:#0a1b2e;--theme-panel2:#0d2239;--theme-line:#17476b;--theme-text:#e5f1ff;--theme-muted:#9ab3cc;--theme-accent:#1688ff;--theme-table:#07192a;--theme-table-alt:#0a2034;--theme-head:#102942;--theme-sticky:#0b2740;--theme-button:#102b46;--theme-input:#061525}
+html[data-theme="inferno"]{--theme-bg:#1b080c;--theme-panel:#2b1017;--theme-panel2:#40151d;--theme-line:#873344;--theme-text:#fff0f1;--theme-muted:#e0aab2;--theme-accent:#ff4057;--theme-table:#210d12;--theme-table-alt:#351219;--theme-head:#4a1822;--theme-sticky:#35121b;--theme-button:#4a1822;--theme-input:#200b10}
+html[data-theme="sky"]{--theme-bg:#071b2b;--theme-panel:#0d2c43;--theme-panel2:#123b58;--theme-line:#287ba5;--theme-text:#effaff;--theme-muted:#b2d8eb;--theme-accent:#43c5ff;--theme-table:#092338;--theme-table-alt:#10314a;--theme-head:#164563;--theme-sticky:#10334c;--theme-button:#12405e;--theme-input:#082034}
+html[data-theme="green"]{--theme-bg:#071b14;--theme-panel:#0b2b20;--theme-panel2:#10402d;--theme-line:#247754;--theme-text:#effff6;--theme-muted:#a9d8c0;--theme-accent:#35df91;--theme-table:#082319;--theme-table-alt:#103526;--theme-head:#174b36;--theme-sticky:#103728;--theme-button:#124832;--theme-input:#071e15}
+html[data-theme="gold"]{--theme-bg:#1c1608;--theme-panel:#30250d;--theme-panel2:#443414;--theme-line:#8b6b25;--theme-text:#fff9e8;--theme-muted:#e2d09d;--theme-accent:#ffd05a;--theme-table:#241c0b;--theme-table-alt:#382b10;--theme-head:#514018;--theme-sticky:#3a2c10;--theme-button:#4a3912;--theme-input:#211908}
+html[data-theme="white"]{color-scheme:light;--theme-bg:#f1f4f8;--theme-panel:#ffffff;--theme-panel2:#e8eef5;--theme-line:#aebdce;--theme-text:#182536;--theme-muted:#4d6177;--theme-accent:#075db5;--theme-table:#ffffff;--theme-table-alt:#eaf0f6;--theme-head:#dce7f2;--theme-sticky:#e5edf6;--theme-button:#dce8f4;--theme-input:#ffffff}
+html[data-theme] body{background:var(--theme-bg);color:var(--theme-text)}
+html[data-theme] header,html[data-theme] .panel{background:var(--theme-panel);border-color:var(--theme-line);color:var(--theme-text)}
+html[data-theme] .panel{background:linear-gradient(145deg,var(--theme-panel),var(--theme-bg))}
+html[data-theme] .panel h2,html[data-theme] .brand small,html[data-theme] .muted{color:var(--theme-muted)}
+html[data-theme] button{background:var(--theme-button);color:var(--theme-text);border-color:var(--theme-line)}
+html[data-theme] button:hover{filter:brightness(1.12)}
+html[data-theme] input,html[data-theme] select{background:var(--theme-input);color:var(--theme-text);border-color:var(--theme-line)}
+html[data-theme] .tablewrap{background:var(--theme-table);border-color:var(--theme-line)}
+html[data-theme] th{background:var(--theme-head);color:var(--theme-text)}
+html[data-theme] td{background:var(--theme-table);color:var(--theme-text)}
+html[data-theme] tbody tr:nth-child(even) td{background:var(--theme-table-alt)}
+html[data-theme] th:nth-child(-n+2),html[data-theme] tbody tr:nth-child(odd) td:nth-child(-n+2){background:var(--theme-sticky)}
+html[data-theme] tbody tr:nth-child(even) td:nth-child(-n+2){background:var(--theme-table-alt)}
+html[data-theme] th,html[data-theme] td{border-color:var(--theme-line)}
+html[data-theme] .filterbox,html[data-theme] .slot{border-color:var(--theme-line)}
+html[data-theme="white"] .danger{background:#ffe5e9;color:#81152a;border-color:#d46b7e}
+html[data-theme="white"] .primary{background:#075db5;color:#fff}
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px}
+.theme-choice{display:flex;align-items:center;gap:9px;text-align:left;min-height:48px}
+.theme-swatch{display:inline-block;width:24px;height:24px;border-radius:50%;border:2px solid currentColor;flex:none}
+.theme-choice[aria-pressed="true"]{outline:2px solid var(--theme-accent);outline-offset:2px}
+
+
+/* Sticky columns use the exact same zebra stripe as the rest of their row (including default theme). */
+tbody tr:nth-child(odd) td:nth-child(-n+2){background:#07192a}
+tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
+
+@media(max-width:700px){header{gap:9px;padding:10px}.brand h1{font-size:17px}.page{padding:8px}.tablewrap{max-height:55vh}th,td{padding:6px 7px}.panel{padding:9px}.filters{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><span class="ball">⚽</span><div><h1>ArciFC</h1><small>Prehľad a analýza kariéry</small></div></div>
+ <span class="status" id="saveStatus">● Autosave aktívne</span><button onclick="installApp()" id="installButton" class="hidden">＋ Inštalovať ArciFC</button>
+ <button onclick="showSection('stats')">▦ Štatistiky</button><button onclick="showSection('settings')">⚙ Nastavenia a sloty</button>
+ <button onclick="addPlayer()">＋ Hráč</button>
+</header>
+<main class="page">
+<section id="stats">
+ <div class="panel">
+  <h2>Zobraziť / skryť stĺpce — poradie zodpovedá poradiu zaškrtnutia</h2>
+  <div class="toolbar" style="margin-bottom:8px"><button onclick="selectAll(true)">Všetky stĺpce</button><button onclick="selectAll(false)">Skryť sezónne štatistiky</button><span class="muted">Ukotvené sú iba pozícia a meno hráča.</span></div>
+  <div id="columnFilters" class="filters"></div>
+  <div class="muted" style="margin-top:8px">Tip: klikni na hlavičku stĺpca pre triedenie; klikni do bunky a prepíš hodnotu. Zmeny sa ukladajú automaticky.</div>
+ </div>
+ <div class="panel">
+  <div class="searchbar"><input id="search" placeholder="⌕ Hľadať hráča..." oninput="renderTable()"><select id="seasonFilter" onchange="renderTable();autosave()" aria-label="Filter sezóny" title="Zobrazí hráčov, ktorí v klube pôsobili aspoň časť sezóny"><option value="all">Všetci hráči</option><option value="1">1. sezóna (2025/26)</option><option value="2">2. sezóna (2026/27)</option><option value="3">3. sezóna (2027/28)</option><option value="4">4. sezóna (2028/29)</option><option value="5">5. sezóna (2029/30)</option><option value="6">6. sezóna (2030/31)</option><option value="7">7. sezóna (2031/32)</option><option value="8">8. sezóna (2032/33)</option><option value="9">9. sezóna (2033/34)</option><option value="10">10. sezóna (2034/35)</option></select><select id="sortKey" onchange="state.sortKey=this.value;autosave();renderTable()"><option value="">Zoradiť podľa…</option></select><select id="sortDir" onchange="state.sortDir=this.value;autosave();renderTable()"><option value="desc">Zostupne ↓</option><option value="asc">Vzostupne ↑</option></select><button onclick="sortByName()">Meno A–Z</button><button onclick="addPlayer()">＋ Pridať hráča</button></div>
+  <div class="tablewrap"><table id="playersTable"></table></div>
+  <div class="statsline"><span id="playerCount">Hráči: 0</span><span id="columnCount">Zobrazené štatistiky: 0</span><span id="autosaveInfo">Autosave do pamäte zariadenia</span><span class="muted">Klikni do bunky pre ručnú úpravu.</span></div>
+ </div>
+ <div class="panel" id="financialSummary">
+  <h2>Náklady na prestupy a platy podľa sezóny</h2>
+  <div id="financialRows" class="bottom"></div>
+ </div>
+</section>
+<section id="settings" class="hidden">
+ <div class="panel"><h2>Téma a dizajn</h2><p class="muted">Vyber si vzhľad aplikácie. Voľba sa ukladá spolu s kariérou a zostane aktívna po opätovnom otvorení.</p><div id="themeChoices" class="theme-grid"></div></div>
+ <div class="panel"><h2>Ukladanie a zálohy</h2><p class="muted">Dáta sa automaticky ukladajú do lokálnej databázy prehliadača (IndexedDB) pri zmenách. Štyri sloty sú samostatné pomenované zálohy. JSON export si odlož aj mimo telefónu ako dodatočnú poistku.</p><div id="slots" class="slotgrid"></div></div>
+ <div class="panel"><h2>Import JSON do aktuálnej hry</h2><p class="muted">Načítanie JSON prepíše aktuálne dáta až po potvrdení. Podporuje JSON export z tejto aplikácie.</p><div class="toolbar"><input type="file" id="jsonFile" accept=".json,application/json"><button class="primary" onclick="importJSON()">Vložiť / importovať JSON</button><button onclick="exportCurrent()">Stiahnuť aktuálne dáta (.json)</button></div></div>
+ <div class="panel"><h2>Legenda skratiek</h2><div class="checkgrid" id="legend"></div></div><div class="panel"><h2>Pokročilé</h2><p class="muted">Vymazanie odstráni aktívnu kariéru a lokálne uložené dáta. Pred pokračovaním si môžeš stiahnuť JSON zálohu.</p><div class="toolbar"><button onclick="exportCurrent()">Stiahnuť zálohu pred vymazaním</button><button class="danger" onclick="deleteDatabase()">Vymazať databázu</button></div></div>
+</section>
+<div class="footer">ArciFC · lokálne dáta v tomto prehliadači · odporúčame pravidelne sťahovať JSON zálohu</div>
+</main>
+<script>
+const CORE=[
+ {key:'pos',label:'Pozícia',abbr:'POS',type:'text',core:true},{key:'name',label:'Meno hráča',abbr:'MENO',type:'text',core:true},
+ {key:'lastClub',label:'Posledný klub',abbr:'PK',type:'text'},{key:'arrival',label:'Príchod',abbr:'PRI',type:'text'},{key:'price',label:'Cena',abbr:'CENA',type:'text'},
+ {key:'leftTo',label:'Odišiel',abbr:'ODI',type:'text'},{key:'departure',label:'Odchod',abbr:'ODC',type:'text'},{key:'sale',label:'Predaj',abbr:'PREDAJ',type:'text'}
+];
+const BASE=[
+ ['Zápasy celkom','ZC','Z'],['Góly celkom','GC','G'],['Asistencie celkom','AC','A'],
+ ['Ligové zápasy','ZL','Z'],['Ligové góly','GL','G'],['Ligové asistencie','AL','A'],
+ ['Európske zápasy','ZE','Z'],['Európske góly','GE','G'],['Európske asistencie','AE','A'],
+ ['Európske zápasy predkola','ZEP','Z'],['Európske góly predkola','GEP','G'],['Európske asistencie predkola','AEP','A'],
+ ['Zápasy Európa HF','ZEH','Z'],['Góly Európa HF','GEH','G'],['Asistencie Európa HF','AEH','A'],
+ ['Zápasy LM HF','ZLMH','Z'],['Góly LM HF','GLMH','G'],['Asistencie LM HF','ALMH','A'],
+ ['Zápasy predkola LM','ZLMP','Z'],['Góly predkola LM','GLMP','G'],['Asistencie predkola LM','ALMP','A'],
+ ['Zápasy EL HF','ZELH','Z'],['Góly EL HF','GELH','G'],['Asistencie EL HF','AELH','A'],
+ ['Zápasy predkola EL','ZELP','Z'],['Góly predkola EL','GELP','G'],['Asistencie predkola EL','AELP','A'],
+ ['Zápasy KL HF','ZKLH','Z'],['Góly KL HF','GKLH','G'],['Asistencie KL HF','AKLH','A'],
+ ['Zápasy predkola KL','ZKLP','Z'],['Góly predkola KL','GKLP','G'],['Asistencie predkola KL','AKLP','A']
+];
+const AGG_BASE=BASE.filter((x,i)=>i>=3).map(([label,abbr,kind])=>({key:'ALL_'+abbr,label:label+' (všetky sezóny)',abbr:abbr+'C',type:'aggregate',kind,base:abbr}));
+const SALARIES=Array.from({length:10},(_,i)=>({key:'salary'+(i+1),label:'Plat '+(i+1)+'. sezóna',abbr:'PL'+(i+1),type:'number',season:i+1,kind:'salary'}));
+const columns=[...CORE,{key:'salaryTotal',label:'Plat celkovo',abbr:'PC',type:'salaryTotal'},{key:'ZC',label:'Zápasy celkom',abbr:'ZC',type:'computed',base:'Z'},{key:'GC',label:'Góly celkom',abbr:'GC',type:'computed',base:'G'},{key:'AC',label:'Asistencie celkovo',abbr:'AC',type:'computed',base:'A'},...AGG_BASE,...SALARIES];
+for(let s=1;s<=10;s++) for(const [label,abbr,kind] of BASE) columns.push({key:abbr+s,label:`${label} ${s}. sezóna`,abbr:`${abbr}${s}`,type:'number',season:s,kind,base:abbr});
+const computed=[
+ {key:'totalZ',label:'Zápasy celkom (auto)',abbr:'ZC*',type:'computed',base:'Z'},
+ {key:'totalG',label:'Góly celkom (auto)',abbr:'GC*',type:'computed',base:'G'},
+ {key:'totalA',label:'Asistencie celkom (auto)',abbr:'AC*',type:'computed',base:'A'}
+];
+// generated columns all seasons + computed total columns for key total types are handled separately
+let state={players:[],visible:[],slotNames:['Moja zostava','Kariéra 2','Kariéra 3','Kariéra 4'],slots:[null,null,null,null],sortKey:'GC',sortDir:'desc',theme:'default'};
+const dbName='FIFAStatsDB_v1'; // Zachováva kompatibilitu s existujúcou databázou.\nlet db;
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(dbName,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains('data'))req.result.createObjectStore('data')};req.onsuccess=()=>{db=req.result;resolve()};req.onerror=()=>reject(req.error)})}
+function dbGet(key){return new Promise((resolve,reject)=>{let r=db.transaction('data').objectStore('data').get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+function dbSet(key,val){return new Promise((resolve,reject)=>{let tx=db.transaction('data','readwrite');tx.objectStore('data').put(val,key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
+function blankPlayer(pos='CM',name=''){let p={pos,name,lastClub:'',arrival:'',price:'',leftTo:'',departure:'',sale:''};for(const c of columns)if(c.type==='number')p[c.key]=0;return p}
+function allData(){return {version:3,players:state.players,visible:state.visible,slotNames:state.slotNames,slots:state.slots,theme:state.theme||'default',sortKey:state.sortKey,sortDir:state.sortDir,search:document.getElementById('search')?.value||'',seasonFilter:document.getElementById('seasonFilter')?.value||'all',scrollTop:document.querySelector('.tablewrap')?.scrollTop||0,scrollLeft:document.querySelector('.tablewrap')?.scrollLeft||0,section:document.getElementById('settings')?.classList.contains('hidden')?'stats':'settings'}}
+let saveTimer, installPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installButton')?.classList.remove('hidden')});async function installApp(){if(!installPrompt){alert('Ak sa ponuka inštalácie nezobrazuje, otvor menu prehliadača a zvoľ „Pridať na plochu“.');return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installButton')?.classList.add('hidden')}
+function autosave(){document.getElementById('saveStatus').textContent='● Ukladám…';clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{try{await dbSet('current',allData());document.getElementById('saveStatus').textContent='● Autosave aktívne';document.getElementById('autosaveInfo').textContent='Uložené v pamäti zariadenia';}catch(e){document.getElementById('saveStatus').textContent='⚠ Chyba ukladania';}},120)}
+function groupsForFilters(){let groups=[{title:'Prestupy a základ',items:CORE.filter(c=>!c.core)},{title:'Súhrn všetkých sezón',items:[{key:'salaryTotal',label:'Plat celkovo (PC)',abbr:'PC',type:'salaryTotal'},{key:'ZC',label:'Zápasy celkom (ZC)',abbr:'ZC',type:'computed',base:'Z'},{key:'GC',label:'Góly celkom (GC)',abbr:'GC',type:'computed',base:'G'},{key:'AC',label:'Asistencie celkovo (AC)',abbr:'AC',type:'computed',base:'A'},...AGG_BASE]}];for(let s=1;s<=10;s++)groups.push({title:`Sezóna ${s}`,season:s,items:[...columns.filter(c=>c.season===s)]});return groups}
+function buildFilters(){let root=document.getElementById('columnFilters');root.innerHTML='';for(const group of groupsForFilters()){let box=document.createElement('div');box.className='filterbox';let title=document.createElement('strong');if(group.season){let cb=document.createElement('input');cb.type='checkbox';cb.style.marginRight='6px';cb.checked=group.items.length>0&&group.items.every(c=>state.visible.includes(c.key));cb.onchange=()=>{let keys=group.items.map(c=>c.key);state.visible=cb.checked?[...state.visible,...keys.filter(k=>!state.visible.includes(k))]:state.visible.filter(k=>!keys.includes(k));buildFilters();autosave();renderTable()};title.append(cb,document.createTextNode(group.title+' — celá sezóna'))}else title.textContent=group.title;box.append(title);let list=document.createElement('div');list.className='checkgrid';for(const c of group.items){let lab=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=state.visible.includes(c.key);cb.onchange=()=>{if(cb.checked){if(!state.visible.includes(c.key))state.visible.push(c.key)}else state.visible=state.visible.filter(k=>k!==c.key);autosave();renderTable();};lab.append(cb,document.createTextNode(c.label));list.append(lab)}box.append(list);root.append(box)}}
+function allColumnsForTable(){return state.visible.map(k=>columns.find(c=>c.key===k)).filter(Boolean)}
+function raw(p,abbr,s){return Number(p[abbr+s])||0}
+function seasonValue(p,kind,s,base){
+ const prefix=kind==='Z'?'Z':kind==='G'?'G':'A';
+ if(base===prefix+'C')return seasonValue(p,kind,s,prefix+'L')+seasonValue(p,kind,s,prefix+'E');
+ if(base===prefix+'E')return seasonValue(p,kind,s,prefix+'EP')+seasonValue(p,kind,s,prefix+'EH');
+ if(base===prefix+'EH')return raw(p,prefix+'LMH',s)+raw(p,prefix+'ELH',s)+raw(p,prefix+'KLH',s);
+ if(base===prefix+'EP')return raw(p,prefix+'LMP',s)+raw(p,prefix+'ELP',s)+raw(p,prefix+'KLP',s);
+ if(base===prefix+'L')return raw(p,base,s);
+ return raw(p,base,s);
+}
+function sum(p,kind){const base=kind==='Z'?'ZC':kind==='G'?'GC':'AC';return Array.from({length:10},(_,i)=>seasonValue(p,kind,i+1,base)).reduce((a,b)=>a+b,0)}
+function isDerived(c){return c.type==='computed'||(['ZC','GC','AC','ZE','GE','AE','ZEH','GEH','AEH','ZEP','GEP','AEP'].includes(c.base))}
+function val(p,c){if(c.key==='GC'||c.key==='totalG')return sum(p,'G');if(c.key==='ZC'||c.key==='totalZ')return sum(p,'Z');if(c.key==='AC'||c.key==='totalA')return sum(p,'A');if(c.key==='salaryTotal')return SALARIES.reduce((n,x)=>n+moneyNumber(p[x.key]),0);if(c.type==='aggregate')return Array.from({length:10},(_,i)=>seasonValue(p,c.kind,i+1,c.base)).reduce((a,b)=>a+b,0);if(c.season&&isDerived(c))return seasonValue(p,c.kind,c.season,c.base);return p[c.key]??''}
+
+function seasonIndex(value, isDeparture=false){
+ const s=String(value??'').trim();
+ if(!s)return null;
+ let m=s.match(/^(\d{2,4})\s*\/\s*(\d{2,4})$/);
+ if(m){let y=Number(m[1]); if(y>=2000)y%=100; return Math.max(1,y-24);}
+ m=s.match(/^(\d{2,4})$/);
+ if(m){let y=Number(m[1]); if(y>=2000)y%=100; return Math.max(1,y-25);}
+ return null;
+}
+function departureIsSeasonStart(value){return String(value??'').trim().includes('/');}
+function playerInSeason(p, season){
+ if(season==='all'||season==null)return true;
+ const n=Number(season), arrival=seasonIndex(p.arrival), departure=seasonIndex(p.departure,true);
+ if(arrival==null || arrival>n)return false;
+ if(departure==null)return true;
+ if(departure>n)return true;
+ if(departure<n)return false;
+ // slash season means departure at the start of that season; year-only means mid-season
+ return !departureIsSeasonStart(p.departure);
+}
+const POSITION_ORDER=['GK','LB','CB','RB','CM','CAM','LW','RW','ST'];
+function comparePosition(a,b,dir='asc'){
+ let ai=POSITION_ORDER.indexOf(String(a.pos||'').toUpperCase()), bi=POSITION_ORDER.indexOf(String(b.pos||'').toUpperCase());
+ if(ai<0)ai=999; if(bi<0)bi=999;
+ return (dir==='asc'?1:-1)*(ai-bi || String(a.name||'').localeCompare(String(b.name||''),'sk'));
+}
+function moneyNumber(v){
+ if(typeof v==='number')return v;
+ let s=String(v??'').trim().replace(/\s/g,'').replace(/€/g,'').replace(',', '.');
+ if(!s)return 0;
+ const m=s.match(/^(-?[\d.]+)([kKmM]?)$/);
+ if(!m)return Number(s)||0;
+ let n=Number(m[1]); if(m[2]==='k'||m[2]==='K')n*=1000; if(m[2]==='M')n*=1000000; if(m[2]==='m')n*=1000000;
+ return Number.isFinite(n)?n:0;
+}
+function fmtMoney(v){return (Number(v)||0).toLocaleString('sk-SK')+' €'}
+function renderFinancialSummary(){
+ const root=document.getElementById('financialRows'); if(!root)return;
+ root.innerHTML=Array.from({length:10},(_,i)=>{
+  const season=i+1, label=`${2024+season}/${String(2025+season).slice(-2)}`;
+  const spend=state.players.reduce((n,p)=>n+(seasonIndex(p.arrival)===season?moneyNumber(p.price):0),0);
+  const salaries=state.players.reduce((n,p)=>n+(playerInSeason(p,season)?moneyNumber(p['salary'+season]):0),0);
+  return `<div class="slot"><h3>${label}</h3><div>Náklady na prestupy: <b>${fmtMoney(spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(salaries)}</b></div></div>`;
+ }).join('');
+}
+const THEMES=[
+ {id:'default',name:'Pôvodná — ArciFC',swatch:'#1688ff'},
+ {id:'inferno',name:'Inferno — červená',swatch:'#ff4057'},
+ {id:'sky',name:'Nebeská — svetlomodrá',swatch:'#43c5ff'},
+ {id:'green',name:'Zelená',swatch:'#35df91'},
+ {id:'gold',name:'Zlatá',swatch:'#ffd05a'},
+ {id:'white',name:'Biela',swatch:'#ffffff'}
+];
+function applyTheme(theme, persist=true){
+ const valid=THEMES.some(t=>t.id===theme)?theme:'default';
+ state.theme=valid;document.documentElement.dataset.theme=valid;
+ const root=document.getElementById('themeChoices');
+ if(root){root.innerHTML=THEMES.map(t=>`<button type="button" class="theme-choice" data-theme-choice="${t.id}" aria-pressed="${t.id===valid?'true':'false'}" onclick="chooseTheme('${t.id}')"><span class="theme-swatch" style="background:${t.swatch};${t.id==='white'?'border-color:#9aa8b8':''}"></span><span>${esc(t.name)}</span>${t.id===valid?' ✓':''}</button>`).join('')}
+ if(persist && db)autosave();
+}
+function chooseTheme(theme){applyTheme(theme,true)}
+function deleteDatabase(){
+ if(!confirm('Naozaj chceš vymazať aktívnu kariéru a všetky jej uložené údaje?'))return;
+ if(!confirm('POSLEDNÉ POTVRDENIE: túto akciu nemožno vrátiť späť. Vymazať databázu ArciFC?'))return;
+ state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);state.slots=[null,null,null,null];
+ Promise.all([0,1,2,3].map(i=>dbSet('slot_'+i,null))).then(()=>dbSet('current',allData())).then(()=>{alert('Databáza kariéry bola vymazaná.');buildFilters();renderTable();renderSlots();renderFinancialSummary();}).catch(()=>alert('Nepodarilo sa vymazať údaje.'));
+}
+function renderTable(){const table=document.getElementById('playersTable'), query=document.getElementById('search').value.toLowerCase();let shown=allColumnsForTable();let seasonFilter=document.getElementById('seasonFilter')?.value||'all';let players=state.players.map((p,i)=>({...p,__i:i})).filter(p=>((p.name||'').toLowerCase().includes(query)||(p.pos||'').toLowerCase().includes(query))&&playerInSeason(p,seasonFilter));let sort=document.getElementById('sortKey').value||state.sortKey;let dir=document.getElementById('sortDir').value||state.sortDir;if(sort){let c=shown.find(c=>c.key===sort)||columns.find(c=>c.key===sort);players.sort((a,b)=>{if(sort==='pos')return comparePosition(a,b,dir);let x=c?val(a,c):a[sort],y=c?val(b,c):b[sort];let moneyCol=(c&&(['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'));let nx=moneyCol?moneyNumber(x):Number(x),ny=moneyCol?moneyNumber(y):Number(y);let cmp=(!isNaN(nx)&&x!==''&&!isNaN(ny)&&y!=='')?nx-ny:String(x??'').localeCompare(String(y??''),'sk');return dir==='asc'?cmp:-cmp})}
+let thead='<thead><tr><th onclick="setSort(\'pos\')" title="Zoradiť podľa pozície">Pozícia</th><th onclick="setSort(\'name\')" title="Zoradiť podľa mena">Meno hráča</th>'+shown.map(c=>`<th class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'?'money':''}" onclick="setSort('${c.key}')" title="Klikni na zoradenie">${esc(c.label)}<span class="abbr">${esc(c.abbr)}</span></th>`).join('')+'<th>Akcia</th></tr></thead>';let body='<tbody>'+players.map((p,n)=>'<tr><td contenteditable="true" onblur="editCell('+p.__i+',\'pos\',this.textContent)">'+esc(p.pos)+'</td><td class="namecell" contenteditable="true" onblur="editCell('+p.__i+',\'name\',this.textContent)">'+esc(p.name)+'</td>'+shown.map(c=>{let v=val(p,c);if(['price','sale'].includes(c.key)||c.kind==='salary'||c.key==='salaryTotal'){const n=moneyNumber(v);v=n>=1000000?(Number.isInteger(n/1000000)?(n/1000000)+'M':(n/1000000).toLocaleString('en-US')+'M'):n>=1000?(Number.isInteger(n/1000)?(n/1000)+'k':(n/1000).toLocaleString('en-US')+'k'):String(v??'');}if(c.type==='computed'||c.type==='aggregate'||c.type==='salaryTotal'||c.summary||isDerived(c))return `<td class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'?'money':''}" style="color:var(--yellow);font-weight:700">${esc(v)}</td>`;return `<td class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale'].includes(c.key)||c.kind==='salary'?'money':''}" contenteditable="true" onblur="editCell(${p.__i},'${c.key}',this.textContent)" title="${esc(c.label)}">${esc(v)}</td>`}).join('')+`<td><button onclick="deletePlayer(${p.__i})" title="Vymazať hráča">✕</button></td></tr>`).join('')+'</tbody>';table.innerHTML=thead+body;document.getElementById('playerCount').textContent='Hráči: '+players.length;document.getElementById('columnCount').textContent='Zobrazené stĺpce: '+(shown.length+3);renderFinancialSummary()}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function editCell(i,key,value){if(!state.players[i])return;let c=columns.find(x=>x.key===key);state.players[i][key]=key.startsWith('salary')||['price','sale'].includes(key)?moneyNumber(value):c&&c.type==='number'?(Number(value.replace(',','.'))||0):value.trim();autosave();renderTable()}
+function addPlayer(){let name=prompt('Meno hráča:');if(name===null)return;let pos=prompt('Pozícia hráča (napr. ST, CM, GK):','CM');state.players.push(blankPlayer(pos||'',name));autosave();renderTable()}
+function deletePlayer(i){if(confirm(`Naozaj chceš vymazať hráča „${state.players[i].name}“?`)){state.players.splice(i,1);autosave();renderTable()}}
+function setSort(key){document.getElementById('sortKey').value=key;let d=document.getElementById('sortDir');d.value=d.value==='desc'?'asc':'desc';state.sortKey=key;state.sortDir=d.value;autosave();renderTable()}
+function sortByName(){document.getElementById('sortKey').value='name';document.getElementById('sortDir').value='asc';state.sortKey='name';state.sortDir='asc';autosave();renderTable()}
+function selectAll(on){if(on)state.visible=columns.filter(c=>!c.core).map(c=>c.key);else state.visible=state.visible.filter(k=>{let c=columns.find(x=>x.key===k);return c&&!c.season&&!['aggregate','salaryTotal'].includes(c.type)});buildFilters();autosave();renderTable()}
+function resetColumns(){state.visible=columns.filter(c=>!c.core).map(c=>c.key);buildFilters();autosave();renderTable()}
+let currentSection='stats';
+function showSection(id,fromPop=false){
+ document.getElementById('stats').classList.toggle('hidden',id!=='stats');
+ document.getElementById('settings').classList.toggle('hidden',id!=='settings');
+ if(id==='settings')renderSlots();
+ if(!fromPop && id!==currentSection && id==='settings' && location.hash!=='#settings')history.pushState({arcifcSection:'settings'},'','#settings');
+ if(id==='stats' && !fromPop && location.hash==='#settings')history.pushState({arcifcSection:'stats'},'','#stats');
+ currentSection=id;
+}
+window.addEventListener('popstate',()=>{showSection(location.hash==='#settings'?'settings':'stats',true)});
+async function persistAllSlots(){for(let i=0;i<4;i++)await dbSet('slot_'+i,state.slots[i]??null);await dbSet('current',allData())}
+function renderSlots(){let root=document.getElementById('slots');root.innerHTML='';for(let i=0;i<4;i++){let el=document.createElement('div');el.className='slot';el.innerHTML=`<h3>Slot ${i+1}</h3><input id="slotname${i}" value="${esc(state.slotNames[i]||'')}" placeholder="Názov slotu" onchange="renameSlot(${i},this.value)"><div class="toolbar"><button onclick="saveSlot(${i})">Uložiť</button><button onclick="loadSlot(${i})">Načítať</button><button class="danger" onclick="deleteSlot(${i})">Vymazať</button><button onclick="downloadSlot(${i})">Stiahnuť JSON</button><button onclick="uploadSlot(${i})">Vložiť JSON</button></div><p class="muted">${state.slots[i]?'Slot obsahuje uložené dáta.':'Slot je prázdny.'}</p><input type="file" id="slotfile${i}" accept=".json,application/json" class="hidden"></div>`;root.append(el)}}
+function renameSlot(i,name){state.slotNames[i]=name;autosave()}
+async function saveSlot(i){
+ if(state.slots[i]&&!confirm(`Prepísať slot ${i+1} („${state.slotNames[i]}“)?`))return;
+ try{
+  const snapshot=JSON.parse(JSON.stringify({...allData(),slots:[],slotNames:[...state.slotNames]}));
+  state.slots[i]=snapshot;
+  // Persist each slot independently, then persist the index/current game. This prevents one slot overwriting another.
+  await dbSet('slot_'+i,snapshot);
+  await dbSet('current',allData());
+  document.getElementById('saveStatus').textContent='● Slot uložený';
+  renderSlots();
+ }catch(e){alert('Slot sa nepodarilo uložiť. Aktuálne dáta zostali zachované; skús stiahnuť JSON zálohu.');}
+}
+async function loadSlot(i){
+ let snapshot=state.slots[i];
+ if(!snapshot){try{snapshot=await dbGet('slot_'+i)}catch(e){}}
+ if(!snapshot){alert('Tento slot je prázdny.');return}
+ if(!confirm(`Načítať slot ${i+1}? Aktuálna zostava sa nahradí obsahom slotu.`))return;
+ try{
+  const savedSlots=[...state.slots],savedNames=[...state.slotNames];
+  applyData(snapshot);
+  state.slots=savedSlots;state.slotNames=savedNames;
+  // Keep all slots intact even when the snapshot was created by an older version.
+  await dbSet('current',allData());
+  buildFilters();renderTable();renderSlots();applyTheme(state.theme||'default',false);showSection('stats');
+ }catch(e){alert('Slot sa nepodarilo načítať. Skús obnoviť kariéru zo stiahnutého JSON súboru.');}
+}
+async function deleteSlot(i){if(!confirm(`Naozaj vymazať slot ${i+1} („${state.slotNames[i]}“)?`))return;state.slots[i]=null;try{await dbSet('slot_'+i,null);await dbSet('current',allData());renderSlots()}catch(e){alert('Slot sa nepodarilo vymazať z úložiska.')}}
+function downloadBlob(name,obj){let blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function downloadSlot(i){if(!state.slots[i]){alert('Slot je prázdny.');return}downloadBlob(`ArciFC-slot-${i+1}.json`,state.slots[i])}
+function exportCurrent(){downloadBlob('ArciFC-zaloha.json',allData())}
+function uploadSlot(i){let f=document.getElementById('slotfile'+i);f.onchange=async()=>{if(!f.files[0])return;try{let d=JSON.parse(await f.files[0].text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm(`Vložiť JSON do slotu ${i+1}?`))return;state.slots[i]=d;await persistAllSlots();renderSlots()}catch(e){alert('Súbor nie je platná záloha ArciFC.')}finally{f.value=''}};f.click()}
+async function importJSON(){let f=document.getElementById('jsonFile').files[0];if(!f){alert('Najprv vyber JSON súbor.');return}try{let d=JSON.parse(await f.text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm('Import nahradí aktuálnu tabuľku a nastavenia. Pokračovať?'))return;applyData(d);await persistAllSlots();buildFilters();renderTable();renderSlots();alert('JSON bol načítaný.')}catch(e){alert('Nepodarilo sa načítať JSON. Skontroluj, či ide o zálohu tejto aplikácie.')} }
+function applyData(d){state.players=d.players.map(p=>({...blankPlayer(),...p}));state.visible=Array.isArray(d.visible)?d.visible.filter(k=>columns.some(c=>c.key===k)||['GC','ZC','AC'].includes(k)):columns.filter(c=>!c.core).map(c=>c.key);state.slotNames=Array.isArray(d.slotNames)?[...d.slotNames]:state.slotNames;state.slots=Array.isArray(d.slots)?[...d.slots]:state.slots;while(state.slots.length<4)state.slots.push(null);state.slots=state.slots.slice(0,4);state.theme=d.theme||state.theme||'default';applyTheme(state.theme,false);state.sortKey=d.sortKey||'GC';state.sortDir=d.sortDir||'desc';document.getElementById('sortKey').value=state.sortKey;document.getElementById('sortDir').value=state.sortDir;if(d.search)document.getElementById('search').value=d.search;if(d.seasonFilter&&document.getElementById('seasonFilter'))document.getElementById('seasonFilter').value=d.seasonFilter;state.restoreScroll=[d.scrollTop||0,d.scrollLeft||0];state.restoreSection=d.section||'stats'}
+function setupSort(){let s=document.getElementById('sortKey');const seen=new Set();const sortable=[{key:'pos',label:'Pozícia (GK → ST)'},{key:'name',label:'Meno hráča'},...columns.filter(c=>['number','computed','aggregate','salaryTotal'].includes(c.type)||['price','sale'].includes(c.key)).map(c=>({key:c.key,label:c.label+' ('+c.abbr+')'}))].filter(c=>{if(seen.has(c.key))return false;seen.add(c.key);return true});s.innerHTML='<option value="">Zoradiť podľa…</option>'+sortable.map(c=>`<option value="${c.key}">${esc(c.label)}</option>`).join('')}
+function legend(){let root=document.getElementById('legend');root.innerHTML=[['Z','Zápasy'],['G','Góly'],['A','Asistencie'],['L','Liga'],['E','Európa'],['P','Predkolo'],['H','Hlavná fáza'],['LM','Liga majstrov'],['EL','Európska liga (UEFA)'],['KL','Konferenčná liga'],['C','Celkom']].map(x=>`<label><b>${x[0]}</b> — ${x[1]}</label>`).join('')}
+(async function init(){if(!location.hash)history.replaceState({arcifcSection:'stats'},'','#stats');try{await openDB();let saved=await dbGet('current');if(saved)applyData(saved);else{state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);await dbSet('current',allData());}
+ // Recover each slot from its own IndexedDB record; migrate slots from older current-save format once.
+ for(let i=0;i<4;i++){let independent=await dbGet('slot_'+i);if(independent!==undefined){state.slots[i]=independent;}else if(state.slots[i]){await dbSet('slot_'+i,state.slots[i]);}}
+ await dbSet('current',allData());
+ }catch(e){alert('Lokálne ukladanie nie je dostupné. Skús otvoriť aplikáciu v bežnom prehliadači.')}setupSort();applyTheme(state.theme||'default',false);buildFilters();renderTable();legend();const stats=document.getElementById('stats');const tablePanel=stats.querySelector('.panel:nth-of-type(2)');const filterPanel=stats.querySelector('.panel:nth-of-type(1)');const summary=document.getElementById('financialSummary');if(tablePanel&&summary){stats.insertBefore(tablePanel,stats.firstChild);stats.insertBefore(summary,tablePanel.nextSibling);stats.appendChild(filterPanel);}if(state.restoreScroll){const w=document.querySelector('.tablewrap');w.scrollTop=state.restoreScroll[0];w.scrollLeft=state.restoreScroll[1]}if(state.restoreSection==='settings')showSection('settings',true);window.addEventListener('pagehide',()=>{try{db.transaction('data','readwrite').objectStore('data').put(allData(),'current')}catch(e){}});if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});})();
+</script>
+</body></html>
