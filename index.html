@@ -46,14 +46,112 @@ html[data-theme="white"] .primary{background:#075db5;color:#fff}
 tbody tr:nth-child(odd) td:nth-child(-n+2){background:#07192a}
 tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
 
+
+/* Player profile */
+td.namecell{min-width:154px!important;width:154px!important;max-width:180px!important;padding:3px 5px!important}
+.name-with-profile{display:flex;align-items:center;gap:6px;min-width:0}
+.name-edit{display:inline-block;min-width:0;max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;outline:none;flex:1}
+.profile-dot{width:19px;height:19px;min-width:19px;padding:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;line-height:1;border:1px solid var(--theme-accent,#1688ff);background:var(--theme-panel2,#0d2239);color:var(--theme-accent,#1688ff);flex:none}
+.profile-dot:hover{transform:scale(1.12);box-shadow:0 0 0 3px color-mix(in srgb,var(--theme-accent,#1688ff) 22%,transparent)}
+.profile-overlay{position:fixed;inset:0;z-index:1000;overflow:auto;background:var(--theme-bg,#06111f);color:var(--theme-text,#e5f1ff);padding-bottom:28px}
+.profile-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px max(12px,calc((100vw - 1240px)/2));background:var(--theme-panel,#0a1b2e);border-bottom:1px solid var(--theme-line,#17476b);box-shadow:0 5px 18px #0003}
+.profile-topbar .profile-heading{font-weight:800;font-size:16px;margin-right:auto}
+.profile-content{max-width:1240px;margin:0 auto;padding:16px}
+.profile-hero{position:relative;overflow:hidden;border:1px solid var(--theme-line);border-radius:17px;padding:20px;background:radial-gradient(circle at 90% 0%,color-mix(in srgb,var(--theme-accent) 22%,transparent),transparent 38%),linear-gradient(135deg,var(--theme-panel),var(--theme-bg));}
+.profile-hero:after{content:"⚽";position:absolute;right:22px;top:4px;font-size:92px;opacity:.07;pointer-events:none}
+.profile-hero-main{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.profile-avatar{width:66px;height:66px;border-radius:18px;display:grid;place-items:center;font-size:25px;font-weight:900;background:var(--theme-panel2);border:1px solid var(--theme-line);color:var(--theme-accent);flex:none}
+.profile-name{font-size:clamp(22px,4vw,34px);font-weight:900;line-height:1.1}
+.profile-sub{color:var(--theme-muted);margin-top:6px}
+.profile-pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
+.profile-pill{border:1px solid var(--theme-line);background:var(--theme-panel2);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--theme-text)}
+.profile-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px;margin:13px 0}
+.profile-metric{border:1px solid var(--theme-line);background:var(--theme-panel);border-radius:12px;padding:12px}
+.profile-metric strong{display:block;font-size:21px;color:var(--theme-accent);font-variant-numeric:tabular-nums}
+.profile-metric span{display:block;color:var(--theme-muted);font-size:11px;margin-top:3px}
+.profile-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:19px 0 9px}
+.profile-section-title h2{font-size:15px;margin:0}
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:9px}
+.profile-info-card,.profile-stat-card{border:1px solid var(--theme-line);border-radius:12px;background:var(--theme-panel);padding:12px;min-width:0}
+.profile-info-card h3,.profile-stat-card h3{font-size:13px;margin:0 0 10px;color:var(--theme-accent)}
+.profile-info-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid color-mix(in srgb,var(--theme-line) 55%,transparent);font-size:12px}
+.profile-info-row:last-child{border-bottom:0}
+.profile-info-row span:first-child{color:var(--theme-muted)}
+.profile-info-row strong{text-align:right;overflow-wrap:anywhere}
+.profile-stat-card{background:linear-gradient(145deg,var(--theme-panel),var(--theme-bg))}
+.profile-stat-total{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.profile-stat-chip{flex:1;min-width:65px;border-radius:9px;background:var(--theme-panel2);padding:8px;text-align:center}
+.profile-stat-chip strong{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.profile-stat-chip span{font-size:10px;color:var(--theme-muted)}
+.profile-season-list{display:grid;gap:5px}
+.profile-season-row{display:grid;grid-template-columns:minmax(70px,1fr) repeat(3,minmax(38px,.55fr));gap:5px;align-items:center;padding:6px 8px;border-radius:7px;background:var(--theme-table-alt);font-size:11px;text-align:center}
+.profile-season-row span:first-child{text-align:left;color:var(--theme-muted)}
+.profile-empty{padding:18px;border:1px dashed var(--theme-line);border-radius:12px;color:var(--theme-muted);text-align:center}
+.profile-edit-section{border:1px solid var(--theme-line);border-radius:12px;background:var(--theme-panel);padding:13px;margin:10px 0}
+.profile-edit-section summary{cursor:pointer;font-weight:800;color:var(--theme-accent);padding:3px}
+.profile-form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px;margin-top:12px}
+.profile-field{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--theme-muted);min-width:0}
+.profile-field input,.profile-field select{width:100%;font-size:13px;padding:9px}
+.profile-stat-edit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:7px;margin-top:10px}
+.finance-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 14px}.finance-controls select{min-width:145px}
+.finance-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:9px;margin:12px 0}
+.finance-kpi,.finance-card{background:var(--theme-panel,#0b1d31);border:1px solid var(--theme-line,#245578);border-radius:11px;padding:12px;min-width:0}
+.finance-kpi strong{display:block;font-size:clamp(17px,2.4vw,24px);color:var(--theme-accent,#55aaff);overflow-wrap:anywhere}.finance-kpi span{display:block;color:var(--theme-muted,#9bb5ce);font-size:11px;margin-top:4px}
+.finance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:10px;margin:10px 0 16px}.finance-card h3{margin:0 0 9px;font-size:14px;color:var(--theme-text,#e5f1ff)}
+.finance-table-wrap{overflow:auto;max-width:100%;border:1px solid var(--theme-line,#245578);border-radius:8px}.finance-table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.finance-table th,.finance-table td{padding:7px 9px;border-bottom:1px solid var(--theme-line,#245578);text-align:right}.finance-table th:first-child,.finance-table td:first-child{text-align:left}.finance-table th{background:var(--theme-table-alt,#102942);color:var(--theme-text,#e5f1ff);position:sticky;top:0}.finance-table td{background:var(--theme-panel,#0b1d31);color:var(--theme-text,#e5f1ff)}.finance-table tr:last-child td{border-bottom:0}
+.finance-transfer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 2px;border-bottom:1px solid var(--theme-line,#245578);align-items:center}.finance-transfer:last-child{border-bottom:0}.finance-transfer small{display:block;color:var(--theme-muted,#9bb5ce)}.finance-transfer b{color:var(--theme-accent,#55aaff)}.finance-empty{padding:12px;color:var(--theme-muted,#9bb5ce);font-size:12px}.finance-section-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:18px 0 8px}.finance-section-title h2{font-size:16px;margin:0}.finance-note{font-size:11px;color:var(--theme-muted,#9bb5ce);line-height:1.5}
+
+.profile-stat-edit-grid .profile-field{background:var(--theme-panel2);padding:8px;border-radius:8px}
+.profile-save-note{font-size:11px;color:var(--theme-muted);margin-left:auto}
+.profile-actions{display:flex;gap:8px;flex-wrap:wrap}
+.profile-actions .primary{background:var(--theme-accent);color:#fff}
+.profile-danger-note{color:var(--theme-muted);font-size:11px;margin-top:8px}
+@media(max-width:600px){.profile-content{padding:9px}.profile-hero{padding:14px}.profile-avatar{width:54px;height:54px;border-radius:14px}.profile-topbar{padding:9px}.profile-topbar .profile-heading{font-size:14px}.profile-season-row{grid-template-columns:minmax(60px,1fr) repeat(3,minmax(30px,.5fr));font-size:10px}}
+
 @media(max-width:700px){header{gap:9px;padding:10px}.brand h1{font-size:17px}.page{padding:8px}.tablewrap{max-height:55vh}th,td{padding:6px 7px}.panel{padding:9px}.filters{grid-template-columns:1fr 1fr}}
+
+/* FCArci table readability: compact fields stay compact, names and clubs get room. */
+#playersTable th:nth-child(1),#playersTable td:nth-child(1){min-width:58px!important;width:64px!important;max-width:76px!important;text-align:center}
+#playersTable th:nth-child(2),#playersTable td:nth-child(2){left:64px!important;min-width:178px!important;width:190px!important;max-width:230px!important}
+#playersTable th:nth-child(n+3),#playersTable td:nth-child(n+3){min-width:66px;width:84px;max-width:150px;padding:4px 5px}
+#playersTable th.money,#playersTable td.money{min-width:112px!important;width:126px!important;max-width:160px!important}
+#playersTable th.club,#playersTable td.club{min-width:150px!important;width:170px!important;max-width:220px!important}
+#playersTable td .cell-scroll{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:thin;scrollbar-color:var(--theme-accent,#1688ff) transparent;padding:2px 1px}
+#playersTable td .cell-scroll[contenteditable=true]{outline:none;cursor:text}
+#playersTable td .cell-scroll[contenteditable=true]:focus{box-shadow:inset 0 0 0 1px var(--theme-accent,#1688ff);border-radius:4px}
+#playersTable td.namecell{min-width:178px!important;width:190px!important;max-width:230px!important}
+#playersTable .name-edit{display:block;max-width:none;min-width:0;overflow-x:auto;overflow-y:hidden;text-overflow:clip;white-space:nowrap;scrollbar-width:thin}
+#playersTable .name-with-profile{width:100%}
+.finance-table{table-layout:auto;min-width:100%;width:max-content}
+.finance-table th,.finance-table td{min-width:84px;max-width:210px;vertical-align:middle}
+.finance-table th:first-child,.finance-table td:first-child{min-width:150px;max-width:230px}
+.finance-table th:nth-child(n+2),.finance-table td:nth-child(n+2){min-width:116px}
+.finance-table td .finance-cell-scroll{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:thin;scrollbar-color:var(--theme-accent,#1688ff) transparent;padding:2px 1px}
+.finance-table td .finance-cell-scroll.long-text{min-width:90px}
+.finance-table td .finance-cell-scroll.money-cell{min-width:104px}
+.finance-transfer{grid-template-columns:minmax(0,1fr) minmax(105px,auto)}
+.finance-transfer strong{white-space:nowrap;text-align:right}
+#cellLongTooltip{position:fixed;z-index:3000;display:none;max-width:min(88vw,620px);max-height:45vh;overflow:auto;white-space:normal;overflow-wrap:anywhere;padding:10px 13px;border:1px solid var(--theme-accent,#1688ff);border-radius:9px;background:var(--theme-panel,#0a1b2e);color:var(--theme-text,#e5f1ff);box-shadow:0 10px 35px #0009;font-size:13px;line-height:1.45;pointer-events:none}
+#cellLongTooltip.visible{display:block}
+@media(max-width:700px){
+ #playersTable th:nth-child(2),#playersTable td:nth-child(2){left:58px!important;min-width:160px!important;width:170px!important}
+ #playersTable th:nth-child(n+3),#playersTable td:nth-child(n+3){min-width:62px;width:74px}
+ .finance-table th:first-child,.finance-table td:first-child{min-width:135px}
+ .finance-table th:nth-child(n+2),.finance-table td:nth-child(n+2){min-width:108px}
+}
+
+
+.finance-guide{margin-top:10px;padding:10px 12px;border:1px solid var(--theme-border,rgba(130,160,190,.24));border-radius:9px;background:var(--theme-panel,rgba(100,130,160,.06));color:var(--theme-muted,var(--muted,#9fb2c8));font-size:12px;line-height:1.55}
+.finance-guide strong{display:block;color:var(--theme-text,var(--text,#e5f1ff));font-size:12px;margin-bottom:4px}
+.finance-guide p{margin:0}
+.stats-reading-guide{margin-top:12px}
 </style>
 </head>
 <body>
 <header>
  <div class="brand"><span class="ball">⚽</span><div><h1>FCArci</h1><small>Prehľad a analýza kariéry</small></div></div>
  <span class="status" id="saveStatus">● Autosave aktívne</span><button onclick="installApp()" id="installButton" class="hidden">＋ Inštalovať FCArci</button>
- <button onclick="showSection('stats')">▦ Štatistiky</button><button onclick="showSection('settings')">⚙ Nastavenia a sloty</button>
+ <button onclick="showSection('stats')">▦ Štatistiky</button><button onclick="showSection('finance')">💶 Prestupy a financie</button><button onclick="showSection('settings')">⚙ Nastavenia a sloty</button>
  <button onclick="addPlayer()">＋ Hráč</button>
 </header>
 <main class="page">
@@ -68,11 +166,25 @@ tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
   <div class="searchbar"><input id="search" placeholder="⌕ Hľadať hráča..." oninput="renderTable()"><select id="seasonFilter" onchange="renderTable();autosave()" aria-label="Filter sezóny" title="Zobrazí hráčov, ktorí v klube pôsobili aspoň časť sezóny"><option value="all">Všetci hráči</option><option value="1">1. sezóna (2025/26)</option><option value="2">2. sezóna (2026/27)</option><option value="3">3. sezóna (2027/28)</option><option value="4">4. sezóna (2028/29)</option><option value="5">5. sezóna (2029/30)</option><option value="6">6. sezóna (2030/31)</option><option value="7">7. sezóna (2031/32)</option><option value="8">8. sezóna (2032/33)</option><option value="9">9. sezóna (2033/34)</option><option value="10">10. sezóna (2034/35)</option></select><select id="sortKey" onchange="state.sortKey=this.value;autosave();renderTable()"><option value="">Zoradiť podľa…</option></select><select id="sortDir" onchange="state.sortDir=this.value;autosave();renderTable()"><option value="desc">Zostupne ↓</option><option value="asc">Vzostupne ↑</option></select><button onclick="sortByName()">Meno A–Z</button><button onclick="addPlayer()">＋ Pridať hráča</button></div>
   <div class="tablewrap"><table id="playersTable"></table></div>
   <div class="statsline"><span id="playerCount">Hráči: 0</span><span id="columnCount">Zobrazené štatistiky: 0</span><span id="autosaveInfo">Autosave do pamäte zariadenia</span><span class="muted">Klikni do bunky pre ručnú úpravu.</span></div>
+  <div class="finance-guide stats-reading-guide"><strong>Ako čítať hlavnú tabuľku štatistík</strong><p>Každý riadok predstavuje jedného hráča. Prvé dva stĺpce sú pozícia a meno; ďalšie stĺpce sa zobrazujú podľa výberu v časti „Zobraziť / skryť stĺpce“. Sezónne stĺpce obsahujú údaje za konkrétnu sezónu, súhrnné stĺpce „celkom“ sčítavajú príslušnú štatistiku naprieč všetkými sezónami. Kliknutím na hlavičku stĺpca sa tabuľka zoradí podľa danej hodnoty; šípka v nastavení určuje smer zoradenia. Vyhľadávanie filtruje podľa mena alebo pozície a filter sezóny zobrazí hráčov, ktorí v klube pôsobili aspoň časť vybranej sezóny. Bežné bunky možno upraviť kliknutím a prepísaním hodnoty; automaticky vypočítané súhrny sa ručne neupravujú, ale odvodzujú sa zo sezónnych údajov. Pozícia a meno zostávajú ukotvené pri horizontálnom posúvaní.</p></div>
  </div>
  <div class="panel" id="financialSummary">
   <h2>Finančný prehľad podľa sezóny</h2>
   <div id="financialRows" class="bottom"></div>
+  <div class="finance-guide"><strong>Ako čítať finančný prehľad podľa sezóny</strong><p>Každá karta predstavuje jednu sezónu v chronologickom poradí. Náklady na prestupy sčítavajú nákupné sumy hráčov, ktorých dátum príchodu patrí do danej sezóny. Náklady na platy sčítavajú platy hráčov, ktorí v danej sezóne pôsobili v klube; nevyplnený plat sa berie ako 0 €. Zisk z predaja zahŕňa predajnú sumu hráčov, ktorých dátum odchodu patrí do danej sezóny. Čisté saldo = zisk z predaja − náklady na prestupy − náklady na platy. Kladné saldo znamená prebytok podľa zadaných položiek, záporné saldo znamená vyššie náklady než príjmy.</p></div>
  </div>
+</section>
+<section id="finance" class="hidden">
+ <div class="panel">
+  <h2>Prestupy a financie klubu</h2>
+  <p class="muted">Kompletný finančný rozbor kariéry z údajov hráčov. Výpočty sa aktualizujú automaticky po úprave tabuľky alebo profilu.</p>
+  <div class="finance-controls"><span class="finance-note">Výber sezóny filtruje finančnú tabuľku a zoznam prestupov; súhrnné rebríčky a KPI zobrazujú celú kariéru.</span><label class="muted">Prestupy <select id="financeTransferFilter" onchange="renderFinanceHub()"><option value="both">Príchody aj odchody</option><option value="in">Iba príchody</option><option value="out">Iba odchody</option></select></label><label class="muted">Sezóna <select id="financeSeasonFilter" onchange="renderFinanceHub()"><option value="all">Všetky sezóny</option><option value="1">2025/26</option><option value="2">2026/27</option><option value="3">2027/28</option><option value="4">2028/29</option><option value="5">2029/30</option><option value="6">2030/31</option><option value="7">2031/32</option><option value="8">2032/33</option><option value="9">2033/34</option><option value="10">2034/35</option></select></label></div>
+  <div id="financeKpis" class="finance-kpis"></div>
+ </div>
+ <div class="panel"><div class="finance-section-title"><h2>Finančný vývoj po sezónach</h2><span class="muted">Prestupy · platy · predaje · čisté saldo</span></div><div id="financeSeasonTable" class="finance-table-wrap"></div></div>
+ <div class="panel"><div class="finance-section-title"><h2>Prestupy sezónu po sezóne</h2><span class="muted">Dátumy sú odvodené zo zápisu sezóny / roku</span></div><div id="financeTransfers"></div></div>
+ <div class="finance-grid" id="financeAnalysis"></div>
+ <p class="finance-note">Poznámka k presnosti: aplikácia eviduje pri hráčovi jeden príchod, jeden odchod, jednu aktuálnu pozíciu a plat po sezónach. Preto sa opakované prestupy toho istého hráča nedajú spätne rozlíšiť, ak nie sú samostatne zaznamenané. Rozdelenie nákladov podľa postu používa jeho aktuálnu pozíciu; historické pozície sa v dátach neukladajú. Nezadané sumy sa počítajú ako 0 €.</p>
 </section>
 <section id="settings" class="hidden">
  <div class="panel"><h2>Téma a dizajn</h2><p class="muted">Vyber si vzhľad aplikácie. Voľba sa ukladá spolu s kariérou a zostane aktívna po opätovnom otvorení.</p><div id="themeChoices" class="theme-grid"></div></div>
@@ -82,6 +194,7 @@ tbody tr:nth-child(even) td:nth-child(-n+2){background:#0a2034}
 </section>
 <div class="footer">FCArci · lokálne dáta v tomto prehliadači · odporúčame pravidelne sťahovať JSON zálohu</div>
 </main>
+<div id="profileOverlay" class="profile-overlay hidden" aria-live="polite"></div>
 <script>
 const CORE=[
  {key:'pos',label:'Pozícia',abbr:'POS',type:'text',core:true},{key:'name',label:'Meno hráča',abbr:'MENO',type:'text',core:true},
@@ -111,15 +224,16 @@ const computed=[
  {key:'totalA',label:'Asistencie celkom (auto)',abbr:'AC*',type:'computed',base:'A'}
 ];
 // generated columns all seasons + computed total columns for key total types are handled separately
-let state={players:[],visible:[],slotNames:['Moja zostava','Kariéra 2','Kariéra 3','Kariéra 4'],slots:[null,null,null,null],sortKey:'GC',sortDir:'desc',theme:'default'};
+let state={players:[],visible:[],slotNames:['Moja zostava','Kariéra 2','Kariéra 3','Kariéra 4'],slots:[null,null,null,null],sortKey:'GC',sortDir:'desc',theme:'default',profile:null};
 const dbName='FIFAStatsDB_v1'; // Zachováva kompatibilitu s existujúcou databázou.\nlet db;
 function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(dbName,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains('data'))req.result.createObjectStore('data')};req.onsuccess=()=>{db=req.result;resolve()};req.onerror=()=>reject(req.error)})}
 function dbGet(key){return new Promise((resolve,reject)=>{let r=db.transaction('data').objectStore('data').get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
 function dbSet(key,val){return new Promise((resolve,reject)=>{let tx=db.transaction('data','readwrite');tx.objectStore('data').put(val,key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
-function blankPlayer(pos='CM',name=''){let p={pos,name,lastClub:'',arrival:'',price:'',leftTo:'',departure:'',sale:''};for(const c of columns)if(c.type==='number')p[c.key]=0;return p}
-function allData(){return {version:3,players:state.players,visible:state.visible,slotNames:state.slotNames,slots:state.slots,theme:state.theme||'default',sortKey:state.sortKey,sortDir:state.sortDir,search:document.getElementById('search')?.value||'',seasonFilter:document.getElementById('seasonFilter')?.value||'all',scrollTop:document.querySelector('.tablewrap')?.scrollTop||0,scrollLeft:document.querySelector('.tablewrap')?.scrollLeft||0,section:document.getElementById('settings')?.classList.contains('hidden')?'stats':'settings'}}
+function newPlayerId(){return 'p_'+(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+'_'+Math.random().toString(36).slice(2))}
+function blankPlayer(pos='CM',name=''){let p={playerId:newPlayerId(),pos,name,lastClub:'',arrival:'',price:'',leftTo:'',departure:'',sale:''};for(const c of columns)if(c.type==='number')p[c.key]=0;return p}
+function allData(){return {version:3,players:state.players,visible:state.visible,slotNames:state.slotNames,slots:state.slots,theme:state.theme||'default',sortKey:state.sortKey,sortDir:state.sortDir,search:document.getElementById('search')?.value||'',seasonFilter:document.getElementById('seasonFilter')?.value||'all',scrollTop:document.querySelector('.tablewrap')?.scrollTop||0,scrollLeft:document.querySelector('.tablewrap')?.scrollLeft||0,section:currentSection|| (document.getElementById('settings')?.classList.contains('hidden')?'stats':'settings'),profile:state.profile||null}}
 let saveTimer, installPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;document.getElementById('installButton')?.classList.remove('hidden')});async function installApp(){if(!installPrompt){alert('Ak sa ponuka inštalácie nezobrazuje, otvor menu prehliadača a zvoľ „Pridať na plochu“.');return}installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;document.getElementById('installButton')?.classList.add('hidden')}
-function autosave(){document.getElementById('saveStatus').textContent='● Ukladám…';clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{try{await dbSet('current',allData());document.getElementById('saveStatus').textContent='● Autosave aktívne';document.getElementById('autosaveInfo').textContent='Uložené v pamäti zariadenia';}catch(e){document.getElementById('saveStatus').textContent='⚠ Chyba ukladania';}},120)}
+function autosave(){document.getElementById('saveStatus').textContent='● Ukladám…';clearTimeout(saveTimer);saveTimer=setTimeout(async()=>{try{await dbSet('current',allData());document.getElementById('saveStatus').textContent='● Autosave aktívne';document.getElementById('autosaveInfo').textContent='Uložené v pamäti zariadenia';const profileNote=document.getElementById('profileSaveNote');if(profileNote)profileNote.textContent='● Zmeny uložené lokálne';}catch(e){document.getElementById('saveStatus').textContent='⚠ Chyba ukladania';}},120)}
 function groupsForFilters(){let groups=[{title:'Prestupy a základ',items:CORE.filter(c=>!c.core)},{title:'Súhrn všetkých sezón',items:[{key:'salaryTotal',label:'Plat celkovo (PC)',abbr:'PC',type:'salaryTotal'},{key:'ZC',label:'Zápasy celkom (ZC)',abbr:'ZC',type:'computed',base:'Z'},{key:'GC',label:'Góly celkom (GC)',abbr:'GC',type:'computed',base:'G'},{key:'AC',label:'Asistencie celkovo (AC)',abbr:'AC',type:'computed',base:'A'},...AGG_BASE]}];for(let s=1;s<=10;s++)groups.push({title:`Sezóna ${s}`,season:s,items:[...columns.filter(c=>c.season===s)]});return groups}
 function buildFilters(){let root=document.getElementById('columnFilters');root.innerHTML='';for(const group of groupsForFilters()){let box=document.createElement('div');box.className='filterbox';let title=document.createElement('strong');if(group.season){let cb=document.createElement('input');cb.type='checkbox';cb.style.marginRight='6px';cb.checked=group.items.length>0&&group.items.every(c=>state.visible.includes(c.key));cb.onchange=()=>{let keys=group.items.map(c=>c.key);state.visible=cb.checked?[...state.visible,...keys.filter(k=>!state.visible.includes(k))]:state.visible.filter(k=>!keys.includes(k));buildFilters();autosave();renderTable()};title.append(cb,document.createTextNode(group.title+' — celá sezóna'))}else title.textContent=group.title;box.append(title);let list=document.createElement('div');list.className='checkgrid';for(const c of group.items){let lab=document.createElement('label');let cb=document.createElement('input');cb.type='checkbox';cb.checked=state.visible.includes(c.key);cb.onchange=()=>{if(cb.checked){if(!state.visible.includes(c.key))state.visible.push(c.key)}else state.visible=state.visible.filter(k=>k!==c.key);autosave();renderTable();};lab.append(cb,document.createTextNode(c.label));list.append(lab)}box.append(list);root.append(box)}}
 function allColumnsForTable(){return state.visible.map(k=>columns.find(c=>c.key===k)).filter(Boolean)}
@@ -172,7 +286,14 @@ function moneyNumber(v){
  let n=Number(m[1]); if(m[2]==='k'||m[2]==='K')n*=1000; if(m[2]==='M')n*=1000000; if(m[2]==='m')n*=1000000;
  return Number.isFinite(n)?n:0;
 }
-function fmtMoney(v){return (Number(v)||0).toLocaleString('sk-SK')+' €'}
+function compactMoney(v){
+ const n=Number(v)||0,abs=Math.abs(n);
+ if(abs>=1000000){for(const d of [2,1,0]){const x=Math.round((n/1000000)*10**d)/10**d;if(Math.abs(x*1000000-n)<0.0001)return String(x).replace('.',',')+'M';}}
+ if(abs>=1000){for(const d of [2,1,0]){const x=Math.round((n/1000)*10**d)/10**d;if(Math.abs(x*1000-n)<0.0001)return String(x).replace('.',',')+'k';}}
+ return String(n);
+}
+function fmtMoney(v){return (Number(v)||0).toLocaleString('sk-SK',{maximumFractionDigits:2})+' €'}
+function fmtMoneyCompact(v){return compactMoney(v)+' €'}
 function renderFinancialSummary(){
  const root=document.getElementById('financialRows'); if(!root)return;
  root.innerHTML=Array.from({length:10},(_,i)=>{
@@ -186,6 +307,163 @@ function renderFinancialSummary(){
   return `<div class="slot"><h3>${label}</h3><div>Náklady na prestupy: <b>${fmtMoney(spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(salaries)}</b></div><div>Zisk z predaja: <b>${fmtMoney(saleIncome)}</b></div><div>Čisté saldo: <b>${fmtMoney(saleIncome-spend-salaries)}</b></div></div>`;
  }).join('');
 }
+
+function financeSeasonLabel(n){return `${2024+n}/${String(2025+n).slice(-2)}`}
+function transferDateLabel(value){const rawValue=String(value??'').trim();if(!rawValue)return 'Dátum neuvedený';const m=rawValue.match(/^(\d{2,4})\s*\/\s*(\d{2,4})$/);if(m){let y=Number(m[1]);if(y<100)y+=2000;return `Júl ${y}`}const y=rawValue.match(/^(\d{2,4})$/);if(y){let year=Number(y[1]);if(year<100)year+=2000;return `Január ${year}`}return rawValue}
+function transferDateSortKey(value){
+ const v=String(value??'').trim(),season=v.match(/^(\d{2,4})\s*\/\s*(\d{2,4})$/),year=v.match(/^(\d{2,4})$/);
+ if(season){let y=Number(season[1]);if(y<100)y+=2000;return y*12+6;}
+ if(year){let y=Number(year[1]);if(y<100)y+=2000;return y*12;}
+ const parsed=Date.parse(v);return Number.isFinite(parsed)?new Date(parsed).getFullYear()*12+new Date(parsed).getMonth():Number.MAX_SAFE_INTEGER;}
+function financePosition(p){return String(p.pos||'Neznáma').trim().toUpperCase()||'Neznáma'}
+function financePlayers(){return state.players.filter(p=>String(p.name||'').trim())}
+function financeEvents(){const events=[];for(const p of financePlayers()){const ai=seasonIndex(p.arrival),di=seasonIndex(p.departure,true);if(ai!==null)events.push({type:'in',season:ai,date:transferDateLabel(p.arrival),player:p,club:p.lastClub||'Neznámy klub',fee:moneyNumber(p.price)});if(di!==null)events.push({type:'out',season:di,date:transferDateLabel(p.departure),player:p,club:p.leftTo||'Neznámy klub',fee:moneyNumber(p.sale)});}return events.sort((a,b)=>transferDateSortKey(a.type==='in'?a.player.arrival:a.player.departure)-transferDateSortKey(b.type==='in'?b.player.arrival:b.player.departure)||(a.type===b.type?0:(a.type==='in'?-1:1))||String(a.player.name).localeCompare(String(b.player.name),'sk'))}
+function financeGuideFor(headers){
+ const key=headers.join('|');
+ const guides={
+  'Sezóna|Nákupy|Platy|Predaje|Saldo|Príchody|Odchody':'Riadky sú zoradené chronologicky podľa sezóny. Nákupy a predaje sú súčty evidovaných prestupov v danej sezóne, platy sú súčtom zadaných sezónnych miezd všetkých hráčov. Saldo = predaje − nákupy − platy. Príchody a odchody sú počty evidovaných prestupových udalostí. Filter sezóny nad tabuľkou zúži iba túto tabuľku a zoznam prestupov; ostatné rebríčky zostávajú za celú kariéru.',
+  'Post|Hráči|Platy spolu|Plat / hráč|Priemerný platový záznam|Nákupy|Predaje':'Posty sú zoradené zostupne podľa celkových evidovaných platov. Hráči = počet hráčov s danou aktuálnou pozíciou. Plat / hráč = platy postu delené počtom týchto hráčov. Priemerný platový záznam = platy postu delené počtom kladných zadaných platov v jednotlivých hráčsko-sezónach. Nákupy a predaje sú súčty prestupových súm hráčov s touto aktuálnou pozíciou; historické pozície sa neevidujú.',
+  'Ukazovateľ|Sezóna|Suma':'Každý riadok vyberá sezónu s extrémnou hodnotou pre daný ukazovateľ: najvyššie nákupy, najvyššie platy, najlepšie saldo a najhoršie saldo. Suma je hodnota daného ukazovateľa v uvedenej sezóne. Nejde o kompletný rebríček sezón, ale o štyri samostatné maximá/minimum.',
+  'Hráč|Sezóna|Predchádzajúci klub|Cena':'Všetky evidované príchody, zoradené od najvyššej prestupovej ceny po najnižšiu. Sezóna vychádza z dátumu príchodu; pri zápise typu 27/28 sa dátum interpretuje ako júl 2027. Cena je evidovaná nákupná suma a klub je predchádzajúci klub.',
+  'Hráč|Sezóna|Nový klub|Predajná suma':'Všetky evidované odchody, zoradené od najvyššej predajnej sumy po najnižšiu. Sezóna sa odvodzuje z dátumu odchodu; suma je príjem z predaja a klub je cieľový/nový klub.',
+  'Hráč|Post|Prestup|Platy|Spolu|Platené sezóny':'Hráči sú zoradení zostupne podľa celkových nákladov. Prestup = nákupná suma, Platy = súčet kladných zadaných sezónnych platov, Spolu = prestup + platy. Platené sezóny počítajú iba sezóny s kladným zadaným platom. Nezadané alebo nulové platy sa do počtu ani súčtu nezapočítajú.',
+  'Hráč|Post|Nákup|Platy|Predaj|Čistý výsledok':'Zobrazení sú hráči s evidovaným dátumom odchodu, zoradení od najvyššieho čistého výsledku po najnižší. Čistý výsledok = predajná suma − nákupná suma − všetky evidované kladné platy. Kladná hodnota znamená finančný prebytok podľa evidovaných položiek, záporná stratu. Nejde o účtovný výsledok.',
+  'Hráč|Post|Náklady spolu|Predaj|Čistý výsledok|ROI':'Iba predaní hráči s kladnými celkovými nákladmi; zoradenie je podľa ROI od najvyššieho po najnižšie. Náklady spolu = nákup + evidované platy. Čistý výsledok = predaj − náklady. ROI = čistý výsledok / náklady × 100 %. Záporné ROI znamená, že predaj nepokryl evidované náklady. Ide o orientačný ukazovateľ, nie účtovný zisk.',
+  'Hráč|Post|Prestup|Platy|Náklady spolu|Platené sezóny':'Všetci hráči s kladnými nákladmi, zoradení zostupne podľa investovanej sumy. Prestup je nákupná suma, Platy súčet kladných zadaných platov a Náklady spolu ich súčet. Platené sezóny = počet sezón s kladným zadaným platom.',
+  'Hráč|Zápasy|Góly|Asist.|G+A|Náklad / zápas|Náklad / G+A':'Hráči sú zoradení vzostupne podľa nákladu na zápas, teda najnižší náklad na zápas je navrchu. Náklady = nákupná suma + všetky evidované kladné platy; štatistiky sú kariérne súčty za všetky sezóny. G+A = góly + asistencie. Náklad / zápas = náklady / zápasy; Náklad / G+A = náklady / (góly + asistencie). Na zaradenie treba kladné náklady a aspoň jeden zápas.',
+  'Hráč|Góly|Zápasy|Náklady spolu|Náklad / gól':'Zoradenie je vzostupne podľa nákladu na jeden gól, najlacnejší gól je navrchu. Náklady spolu = nákup + všetky kladné zadané platy. Náklad / gól = náklady / počet kariérnych gólov. Zobrazia sa iba hráči s kladnými nákladmi a aspoň jedným gólom; zápasy sú kariérny súčet.',
+  'Hráč|Asistencie|Zápasy|Náklady spolu|Náklad / asistencia':'Zoradenie je vzostupne podľa nákladu na jednu asistenciu. Náklad / asistencia = náklady spolu (nákup + evidované platy) / kariérne asistencie. Zobrazia sa iba hráči s kladnými nákladmi a aspoň jednou asistenciou.',
+  'Hráč|Góly|Asist.|G+A|Náklady spolu|Náklad / G+A':'Zoradenie je vzostupne podľa nákladu na jeden gólový príspevok. G+A = góly + asistencie; Náklad / G+A = (nákup + všetky evidované platy) / G+A. Zobrazia sa hráči s kladnými nákladmi a aspoň jedným gólovým príspevkom.',
+  'Hráč|Góly|Asistencie|G+A|Náklady spolu|G+A / 1 mil. €':'Zoradenie je zostupne podľa počtu gólových príspevkov na každý 1 milión € nákladov. G+A = góly + asistencie. Výpočet = G+A / (náklady spolu / 1 000 000), kde náklady spolu zahŕňajú nákupnú sumu a všetky evidované kladné platy. Vyššia hodnota znamená vyššiu produkciu za investované peniaze.',
+  'Hráč|Platy spolu|Platené sezóny|Zápasy v platených sezónach|Plat / zápas|Plat / G+A':'Zoradenie je vzostupne podľa platu na zápas v platených sezónach. Započítajú sa iba sezóny s kladným zadaným platom; sezóny bez platu sa vynechajú aj pri zápasoch, góloch a asistenciách. Plat / zápas = súčet platov / zápasy v platených sezónach. Plat / G+A = súčet platov / góly a asistencie v platených sezónach. Prestupová suma sa tu nezapočítava.',
+  'Hráč|Zápasy|Celkové náklady|Náklad / zápas':'Zoradenie je vzostupne od najnižšieho nákladu na zápas. Celkové náklady = nákupná suma + všetky evidované kladné platy; Náklad / zápas = celkové náklady / kariérne zápasy. Do rebríčka vstupujú hráči s kladnými nákladmi a aspoň jedným zápasom.',
+  'Hráč|Góly|Asistencie|G+A|Náklad / G+A':'Zoradenie je vzostupne podľa nákladu na G+A. G+A = góly + asistencie; Náklad / G+A = celkové evidované náklady (nákup + platy) / G+A. Zobrazení sú hráči s kladnými nákladmi a aspoň jedným G+A.',
+  'Hráč|Góly|Náklady spolu|Náklad / gól':'Zoradenie je vzostupne podľa nákladu na gól. Náklad / gól = celkové evidované náklady (nákup + kladné platy) / kariérne góly. Najnižšia hodnota je najvýhodnejšia.',
+  'Hráč|Asistencie|Náklady spolu|Náklad / asistencia':'Zoradenie je vzostupne podľa nákladu na asistenciu. Náklad / asistencia = celkové evidované náklady (nákup + kladné platy) / kariérne asistencie. Najnižšia hodnota je najvýhodnejšia.',
+  'Hráč|Post|Góly|Zápasy|Góly / 90 zápasov':'Zoradenie je zostupne podľa počtu kariérnych gólov. Góly a zápasy sú súčty všetkých sezón. Stĺpec Góly / 90 zápasov v skutočnosti predstavuje góly na 90 evidovaných zápasov (góly / zápasy × 90); nie je to presný časový údaj v minútach.',
+  'Hráč|Post|Asistencie|Zápasy|Asistencie / 90 zápasov':'Zoradenie je zostupne podľa počtu kariérnych asistencií. Asistencie / 90 zápasov = asistencie / zápasy × 90. Je to prepočet na 90 zápasov, nie na 90 minút.',
+  'Hráč|Post|Góly|Asistencie|G+A|Zápasy|G+A / 90 zápasov':'Zoradenie je zostupne podľa celkového počtu G+A. G+A = góly + asistencie; G+A / 90 zápasov = (G+A) / zápasy × 90. Je to prepočet na 90 zápasov, nie na 90 minút.',
+  'Hráč|Post|Predajná suma|Odchod':'Hráči sú zoradení zostupne podľa evidovanej predajnej sumy. Zobrazujú sa iba hráči s kladnou predajnou sumou. Dátum odchodu je dátum evidovaný v profile hráča.',
+  'Ukazovateľ|Výsledok':'Súhrnné ukazovatele za celú kariéru, nie rebríček hráčov. Saldo prestupov = predaje − nákupy; podiel platov = platy / (nákupy + platy); pokrytie nákladov predajmi = predaje / (nákupy + platy). Priemery prestupov sa delia desiatimi plánovanými sezónami. Platové priemery používajú iba kladné vyplnené hráčsko-sezónne záznamy. Góly, asistencie, G+A a zápasy sú súčty evidovaných kariérnych štatistík.',
+  'Post|Nákupy|Platy|Predaje|Saldo':'Posty sú zobrazené podľa poradia, v akom sa prvýkrát vyskytujú v kádri; nejde o rebríček. Nákupy, platy a predaje sú súčty hráčov s aktuálnym postom. Saldo = predaje − nákupy − platy. Keďže sa ukladá iba aktuálna pozícia hráča, historické prestupy sa spätne neprerozdeľujú podľa vtedajšieho postu.',
+  'Hráč|Post|Sezóna|Plat':'Všetky kladné individuálne platové záznamy zoradené zostupne od najvyššieho platu. Každý riadok predstavuje jedného hráča v jednej sezóne; nejde o celkový kariérny plat.',
+  'Hráč|Post|Platy spolu|Počet platených sezón|Priemer za platenú sezónu':'Všetci hráči s aspoň jedným kladným zadaným platom, zoradení zostupne podľa súčtu platov. Priemer za platenú sezónu = platy spolu / počet sezón s kladným zadaným platom. Sezóny bez vyplneného platu sa do priemeru nezapočítajú.'
+ };
+ return guides[key]||'Tabuľka vychádza z evidovaných údajov hráčov a prestupov. Hlavičky určujú význam jednotlivých stĺpcov; „—“ znamená, že daný údaj nemožno z dostupných dát vypočítať. Poradie riadkov zodpovedá rebríčku uvedenému v názve tabuľky.';
+}
+function financeMoneyRows(rows){
+ const moneyHints=/€|%|M$|k$/i;
+ const cells=rows.data.length?rows.data.map(r=>`<tr>${r.map(v=>{const full=String(v??''),money=moneyHints.test(full);return `<td><div class="finance-cell-scroll ${money?'money-cell':'long-text'}" data-fulltext="${esc(full)}" title="${esc(full)}">${esc(full)}</div></td>`}).join('')}</tr>`).join(''):`<tr><td colspan="${rows.headers.length}">Bez údajov</td></tr>`;
+ const guide=financeGuideFor(rows.headers);
+ return `<div class="finance-table-wrap"><table class="finance-table"><thead><tr>${rows.headers.map(h=>`<th title="${esc(h)}">${esc(h)}</th>`).join('')}</tr></thead><tbody>${cells}</tbody></table></div><div class="finance-guide"><strong>Ako čítať túto tabuľku</strong><p>${esc(guide)}</p></div>`;
+}
+function financeMetric(label,value,sub=''){return `<div class="finance-kpi"><strong>${esc(value)}</strong><span>${esc(label)}${sub?' · '+esc(sub):''}</span></div>`}
+function renderFinanceHub(){
+ const players=financePlayers(),events=financeEvents(),sf=document.getElementById('financeSeasonFilter')?.value||'all',tf=document.getElementById('financeTransferFilter')?.value||'both',selected=sf==='all'?null:Number(sf);
+ const incoming=events.filter(e=>e.type==='in'),outgoing=events.filter(e=>e.type==='out');
+ const sum=a=>a.reduce((n,x)=>n+x,0),allSpend=sum(incoming.map(e=>e.fee)),allSales=sum(outgoing.map(e=>e.fee)),allWages=sum(players.flatMap(p=>SALARIES.map(x=>moneyNumber(p[x.key]))));
+ const seasons=Array.from({length:10},(_,i)=>{const n=i+1,ins=incoming.filter(e=>e.season===n),outs=outgoing.filter(e=>e.season===n),spend=sum(ins.map(e=>e.fee)),sales=sum(outs.map(e=>e.fee)),wages=sum(players.map(p=>moneyNumber(p['salary'+n])));return {n,label:financeSeasonLabel(n),ins,outs,spend,sales,wages,net:sales-spend-wages,totalCost:spend+wages,volume:spend+sales}});
+ const filteredSeasons=selected?seasons.filter(x=>x.n===selected):seasons;
+ const wagesByPosition={};for(const p of players){const pos=financePosition(p);if(!wagesByPosition[pos])wagesByPosition[pos]={players:0,wages:0,playerSeasons:0,feesIn:0,feesOut:0};const o=wagesByPosition[pos];o.players++;for(let n=1;n<=10;n++){const w=moneyNumber(p['salary'+n]);o.wages+=w;if(w>0)o.playerSeasons++;}o.feesIn+=incoming.filter(e=>e.player.playerId===p.playerId).reduce((a,e)=>a+e.fee,0);o.feesOut+=outgoing.filter(e=>e.player.playerId===p.playerId).reduce((a,e)=>a+e.fee,0);}
+ const byPos=Object.entries(wagesByPosition).sort((a,b)=>b[1].wages-a[1].wages);
+ const seasonSalaryRows=seasons.map(x=>[x.label,fmtMoney(x.spend),fmtMoney(x.wages),fmtMoney(x.sales),fmtMoney(x.net),String(x.ins.length),String(x.outs.length)]);
+ const totalCosts=allSpend+allWages,avgFeeIn=incoming.length?allSpend/incoming.length:0,avgFeeOut=outgoing.length?allSales/outgoing.length:0;
+ const highestIn=[...incoming].sort((a,b)=>b.fee-a.fee)[0],highestOut=[...outgoing].sort((a,b)=>b.fee-a.fee)[0];
+ const salaryRecords=players.flatMap(p=>SALARIES.map(x=>({p,season:x.season,wage:moneyNumber(p[x.key])})).filter(x=>x.wage>0));const highestSalary=[...salaryRecords].sort((a,b)=>b.wage-a.wage)[0];
+ const careerWageRecords=[...players].map(p=>({p,total:sum(SALARIES.map(x=>moneyNumber(p[x.key]))),paidSeasons:SALARIES.filter(x=>moneyNumber(p[x.key])>0).length})).filter(x=>x.total>0).sort((a,b)=>b.total-a.total);const highestCareerWage=careerWageRecords[0];
+ const topSeller=[...players].map(p=>({p,total:outgoing.filter(e=>e.player.playerId===p.playerId).reduce((a,e)=>a+e.fee,0)})).sort((a,b)=>b.total-a.total)[0];
+ const bestNet=[...seasons].sort((a,b)=>b.net-a.net)[0],worstNet=[...seasons].sort((a,b)=>a.net-b.net)[0],maxSpend=[...seasons].sort((a,b)=>b.spend-a.spend)[0],maxWages=[...seasons].sort((a,b)=>b.wages-a.wages)[0];
+ const avgWagePerPlayerSeason=salaryRecords.length?allWages/salaryRecords.length:0;
+ const k=document.getElementById('financeKpis');if(k)k.innerHTML=[financeMetric('Prestupové nákupy spolu',fmtMoney(allSpend)),financeMetric('Platy spolu',fmtMoney(allWages)),financeMetric('Príjmy z predajov',fmtMoney(allSales)),financeMetric('Celkové náklady (nákupy + platy)',fmtMoney(totalCosts)),financeMetric('Čisté saldo kariéry',fmtMoney(allSales-totalCosts)),financeMetric('Prestupový obrat',fmtMoney(allSpend+allSales)),financeMetric('Priemerný nákup',fmtMoney(avgFeeIn),`${incoming.length} príchodov`),financeMetric('Priemerný predaj',fmtMoney(avgFeeOut),`${outgoing.length} odchodov`),financeMetric('Priemerný evidovaný plat',fmtMoney(avgWagePerPlayerSeason),'na hráča a platenú sezónu'),financeMetric('Počet hráčov',String(players.length)),financeMetric('Počet príchodov / odchodov',`${incoming.length} / ${outgoing.length}`),financeMetric('Najvyšší plat v jednej sezóne',highestSalary?fmtMoney(highestSalary.wage):'—',highestSalary?`${highestSalary.p.name} · ${financeSeasonLabel(highestSalary.season)}`:'bez údajov'),financeMetric('Najdrahší príchod',highestIn?fmtMoney(highestIn.fee):'—',highestIn?`${highestIn.player.name} · ${financeSeasonLabel(highestIn.season)}`:'bez údajov'),financeMetric('Najdrahší odchod',highestOut?fmtMoney(highestOut.fee):'—',highestOut?`${highestOut.player.name} · ${financeSeasonLabel(highestOut.season)}`:'bez údajov'),financeMetric('Hráč s najvyššími platmi spolu',highestCareerWage&&highestCareerWage.total>0?fmtMoney(highestCareerWage.total):'—',highestCareerWage?highestCareerWage.p.name:'bez údajov'),financeMetric('Najviac zarobené na jednom hráčovi',topSeller&&topSeller.total>0?fmtMoney(topSeller.total):'—',topSeller?topSeller.p.name:'bez údajov')].join('');
+ const st=document.getElementById('financeSeasonTable');if(st)st.innerHTML=financeMoneyRows({headers:['Sezóna','Nákupy','Platy','Predaje','Saldo','Príchody','Odchody'],data:filteredSeasons.map(x=>[x.label,fmtMoney(x.spend),fmtMoney(x.wages),fmtMoney(x.sales),fmtMoney(x.net),String(x.ins.length),String(x.outs.length)])});
+ const eventList=events.filter(e=>(!selected||e.season===selected)&&(tf==='both'||tf===e.type));const grouped=new Map();for(const e of eventList){if(!grouped.has(e.season))grouped.set(e.season,[]);grouped.get(e.season).push(e)}
+ const tr=document.getElementById('financeTransfers');if(tr){tr.innerHTML=(grouped.size?[...grouped.entries()].map(([n,list])=>`<div class="finance-card" style="margin-bottom:9px"><h3>${financeSeasonLabel(n)} <span class="muted">· ${list.length} ${list.length===1?'prestup':list.length<5?'prestupy':'prestupov'}</span></h3>${list.map(e=>`<div class="finance-transfer"><div><b>${e.type==='in'?'⬇ PRÍCHOD':'⬆ ODCHOD'} · ${esc(e.player.name)}</b><small>${esc(e.date)} · ${e.type==='in'?'Z:':'Do:'} ${esc(e.club)} · ${esc(financePosition(e.player))}</small></div><strong>${fmtMoney(e.fee)}</strong></div>`).join('')}</div>`).join(''):'<div class="finance-empty">Pre zvolený filter nie sú evidované žiadne prestupy.</div>')+`<div class="finance-guide"><strong>Ako čítať zoznam prestupov</strong><p>Prestupy sú rozdelené podľa sezóny a v rámci celej kariéry zoradené podľa odvodeného dátumu. Príchod znamená nákup hráča do klubu a zobrazuje predchádzajúci klub; odchod znamená predaj a zobrazuje nový klub. Suma je evidovaná prestupová čiastka. Pri dátume v tvare 27/28 sa používa júl 2027, pri samotnom roku 28 január 2028. Filter typu prestupu a sezóny mení iba tento zoznam a sezónny finančný prehľad.</p></div>`}
+ const analysis=document.getElementById('financeAnalysis');if(!analysis)return;
+ const positionRows=byPos.map(([pos,o])=>[pos,String(o.players),fmtMoney(o.wages),fmtMoney(o.players?o.wages/o.players:0),fmtMoney(o.playerSeasons?o.wages/o.playerSeasons:0),fmtMoney(o.feesIn),fmtMoney(o.feesOut)]);
+ const positionSeasons=Object.entries(wagesByPosition).map(([pos,o])=>[pos,fmtMoney(o.feesIn),fmtMoney(o.wages),fmtMoney(o.feesOut),fmtMoney(o.feesOut-o.feesIn-o.wages)]);
+ const topEarners=[...players].map(p=>({p,total:moneyNumber(p.sale)})).filter(x=>x.total>0).sort((a,b)=>b.total-a.total).map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.total),x.p.departure?transferDateLabel(x.p.departure):'—']);
+ const biggestBuyers=[...incoming].sort((a,b)=>b.fee-a.fee).map(e=>[e.player.name,financeSeasonLabel(e.season),e.club,fmtMoney(e.fee)]);
+ const biggestSellers=[...outgoing].sort((a,b)=>b.fee-a.fee).map(e=>[e.player.name,financeSeasonLabel(e.season),e.club,fmtMoney(e.fee)]);
+ const playerEconomics=players.map(p=>{
+  const feeIn=moneyNumber(p.price),feeOut=moneyNumber(p.sale);
+  const wageRows=SALARIES.map(x=>({season:x.season,wage:moneyNumber(p[x.key])})).filter(x=>x.wage>0);
+  const wages=sum(wageRows.map(x=>x.wage)),paidSeasons=wageRows.length,cost=feeIn+wages,net=feeOut-cost;
+  const appearancesBySeason=Array.from({length:10},(_,i)=>seasonValue(p,'Z',i+1,'ZC'));
+  const goalsBySeason=Array.from({length:10},(_,i)=>seasonValue(p,'G',i+1,'GC'));
+  const assistsBySeason=Array.from({length:10},(_,i)=>seasonValue(p,'A',i+1,'AC'));
+  const appearances=sum(appearancesBySeason),goals=sum(goalsBySeason),assists=sum(assistsBySeason);
+  const paidAppearances=sum(wageRows.map(x=>appearancesBySeason[x.season-1]));
+  const paidGoals=sum(wageRows.map(x=>goalsBySeason[x.season-1]));
+  const paidAssists=sum(wageRows.map(x=>assistsBySeason[x.season-1]));
+  const paidContributions=paidGoals+paidAssists;
+  const contributions=goals+assists;
+  const sold=!!String(p.departure||'').trim();
+  const costPerAppearance=appearances>0?cost/appearances:null;
+  const costPerGoal=goals>0?cost/goals:null;
+  const costPerAssist=assists>0?cost/assists:null;
+  const costPerContribution=contributions>0?cost/contributions:null;
+  const salaryPerAppearance=paidAppearances>0&&wages>0?wages/paidAppearances:null;
+  const salaryPerContribution=paidContributions>0&&wages>0?wages/paidContributions:null;
+  const roi=sold&&cost>0?net/cost*100:null;
+  const goalsPerAppearance=appearances>0?goals/appearances*90:null;
+  const assistsPerAppearance=appearances>0?assists/appearances*90:null;
+  const contributionsPerAppearance=appearances>0?contributions/appearances*90:null;
+  const costPerMillion=cost>0?contributions/(cost/1000000):null;
+  return {p,feeIn,feeOut,wages,paidSeasons,paidAppearances,paidGoals,paidAssists,paidContributions,cost,net,roi,sold,appearances,goals,assists,contributions,costPerAppearance,costPerGoal,costPerAssist,costPerContribution,salaryPerAppearance,salaryPerContribution,goalsPerAppearance,assistsPerAppearance,contributionsPerAppearance,costPerMillion};
+ });
+ const pct=v=>v===null||!Number.isFinite(v)?'—':v.toFixed(1)+' %';
+ const num=v=>v===null||!Number.isFinite(v)?'—':v.toFixed(2);
+ const allBy=(arr,key,dir='desc')=>[...arr].filter(x=>x[key]!==null&&Number.isFinite(x[key])).sort((a,b)=>dir==='asc'?a[key]-b[key]:b[key]-a[key]);
+ const allROI=allBy(playerEconomics.filter(x=>x.sold),'roi');
+ const allProfitable=allBy(playerEconomics.filter(x=>x.sold),'net');
+ const allCostly=allBy(playerEconomics,'cost');
+ const allCostPerAppearance=allBy(playerEconomics.filter(x=>x.cost>0&&x.appearances>0),'costPerAppearance','asc');
+ const allCostPerGoal=allBy(playerEconomics.filter(x=>x.cost>0&&x.goals>0),'costPerGoal','asc');
+ const allCostPerAssist=allBy(playerEconomics.filter(x=>x.cost>0&&x.assists>0),'costPerAssist','asc');
+ const allCostPerContribution=allBy(playerEconomics.filter(x=>x.cost>0&&x.contributions>0),'costPerContribution','asc');
+ const allContributionsPerMillion=allBy(playerEconomics.filter(x=>x.cost>0&&x.contributions>0),'costPerMillion','desc');
+ const allSalaryPerAppearance=allBy(playerEconomics.filter(x=>x.salaryPerAppearance!==null),'salaryPerAppearance','asc');
+ const allSalaryPerContribution=allBy(playerEconomics.filter(x=>x.salaryPerContribution!==null),'salaryPerContribution','asc');
+ const allHighestSalary=[...careerWageRecords].sort((a,b)=>b.total-a.total);
+ const allGoals=[...playerEconomics].filter(x=>x.goals>0).sort((a,b)=>b.goals-a.goals);
+ const allAssists=[...playerEconomics].filter(x=>x.assists>0).sort((a,b)=>b.assists-a.assists);
+ const allContributions=[...playerEconomics].filter(x=>x.contributions>0).sort((a,b)=>b.contributions-a.contributions);
+ const positionTable=financeMoneyRows({headers:['Post','Hráči','Platy spolu','Plat / hráč','Priemerný platový záznam','Nákupy','Predaje'],data:positionRows});
+ const cards=[];
+ const rows=(arr,mapper)=>arr.map(mapper);
+ cards.push(`<div class="finance-card"><h3>Náklady podľa postu</h3>${positionTable}<p class="finance-note">Priemer na hráča delí celkové evidované platy počtom hráčov v aktuálnom kádri. Priemer platových záznamov delí iba počtom sezón, v ktorých má hráč zadaný kladný plat.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Najdrahšie sezóny</h3>${financeMoneyRows({headers:['Ukazovateľ','Sezóna','Suma'],data:[['Najviac nákupov',maxSpend.label,fmtMoney(maxSpend.spend)],['Najvyššie platy',maxWages.label,fmtMoney(maxWages.wages)],['Najlepšie čisté saldo',bestNet.label,fmtMoney(bestNet.net)],['Najhoršie čisté saldo',worstNet.label,fmtMoney(worstNet.net)]]})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najväčšie nákupy – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Sezóna','Predchádzajúci klub','Cena'],data:biggestBuyers})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najdrahšie predaje – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Sezóna','Nový klub','Predajná suma'],data:biggestSellers})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Hráči s najvyšším celkovým nákladom</h3>${financeMoneyRows({headers:['Hráč','Post','Prestup','Platy','Spolu','Platené sezóny'],data:allCostly.filter(x=>x.cost>0).map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.feeIn),fmtMoney(x.wages),fmtMoney(x.cost),String(x.paidSeasons)])})}<p class="finance-note">Celkové náklady = nákupná suma + súčet iba tých sezónnych platov, ktoré sú vyplnené kladnou sumou.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Najvýnosnejší hráči podľa čistého výsledku</h3>${financeMoneyRows({headers:['Hráč','Post','Nákup','Platy','Predaj','Čistý výsledok'],data:allProfitable.map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.feeIn),fmtMoney(x.wages),fmtMoney(x.feeOut),fmtMoney(x.net)])})}<p class="finance-note">Zobrazujú sa iba hráči s evidovaným dátumom odchodu. Pri hráčoch, ktorí ešte neodišli, nemožno považovať chýbajúcu predajnú sumu za nulový predaj.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Návratnosť investície (ROI) – všetci predaní hráči</h3>${financeMoneyRows({headers:['Hráč','Post','Náklady spolu','Predaj','Čistý výsledok','ROI'],data:allROI.map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.cost),fmtMoney(x.feeOut),fmtMoney(x.net),pct(x.roi)])})}<p class="finance-note">ROI = (predajná suma − nákupná suma − evidované platy) / (nákupná suma + evidované platy). Započítavajú sa len hráči s evidovaným odchodom a kladnými celkovými nákladmi. Ide o orientačný výpočet, nie účtovný zisk.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Najväčšia investícia do hráča</h3>${financeMoneyRows({headers:['Hráč','Post','Prestup','Platy','Náklady spolu','Platené sezóny'],data:allCostly.filter(x=>x.cost>0).map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.feeIn),fmtMoney(x.wages),fmtMoney(x.cost),String(x.paidSeasons)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Náklady na výkon – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Zápasy','Góly','Asist.','G+A','Náklad / zápas','Náklad / G+A'],data:allCostPerAppearance.map(x=>[x.p.name,String(x.appearances),String(x.goals),String(x.assists),String(x.contributions),fmtMoney(x.costPerAppearance),x.costPerContribution===null?'—':fmtMoney(x.costPerContribution)])})}<p class="finance-note">Náklady na výkon = prestupová suma + všetky zadané platy, vydelené kariérnymi štatistikami. Zobrazujú sa hráči s evidovanými nákladmi a aspoň jedným zápasom. Ak hráč nemá G+A, cena za G+A ostáva „—“.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Náklad na jeden gól – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Góly','Zápasy','Náklady spolu','Náklad / gól'],data:allCostPerGoal.map(x=>[x.p.name,String(x.goals),String(x.appearances),fmtMoney(x.cost),fmtMoney(x.costPerGoal)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Náklad na jednu asistenciu – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Asistencie','Zápasy','Náklady spolu','Náklad / asistencia'],data:allCostPerAssist.map(x=>[x.p.name,String(x.assists),String(x.appearances),fmtMoney(x.cost),fmtMoney(x.costPerAssist)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Náklad na gól alebo asistenciu – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Góly','Asist.','G+A','Náklady spolu','Náklad / G+A'],data:allCostPerContribution.map(x=>[x.p.name,String(x.goals),String(x.assists),String(x.contributions),fmtMoney(x.cost),fmtMoney(x.costPerContribution)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najviac gólových príspevkov za 1 milión € nákladov</h3>${financeMoneyRows({headers:['Hráč','Góly','Asistencie','G+A','Náklady spolu','G+A / 1 mil. €'],data:allContributionsPerMillion.map(x=>[x.p.name,String(x.goals),String(x.assists),String(x.contributions),fmtMoney(x.cost),num(x.costPerMillion)])})}<p class="finance-note">Vyššie číslo znamená viac gólov a asistencií na každý investovaný milión eur. Počíta sa z prestupovej sumy a evidovaných platov.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Efektivita platu – náklady iba na mzdy</h3>${financeMoneyRows({headers:['Hráč','Platy spolu','Platené sezóny','Zápasy v platených sezónach','Plat / zápas','Plat / G+A'],data:allSalaryPerAppearance.map(x=>[x.p.name,fmtMoney(x.wages),String(x.paidSeasons),String(x.paidAppearances),fmtMoney(x.salaryPerAppearance),x.salaryPerContribution===null?'—':fmtMoney(x.salaryPerContribution)])})}<p class="finance-note">Táto tabuľka oddeľuje mzdy od prestupovej sumy. Do súčtu a priemerov vstupujú iba sezóny s vyplneným kladným platom. Aj zápasy, góly a asistencie pri výpočte mzdy na výkon sa berú iba z týchto platených sezón; sezóny bez zadaného platu sa úplne ignorujú.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Najlepší pomer nákladov k zápasom</h3>${financeMoneyRows({headers:['Hráč','Zápasy','Celkové náklady','Náklad / zápas'],data:allCostPerAppearance.map(x=>[x.p.name,String(x.appearances),fmtMoney(x.cost),fmtMoney(x.costPerAppearance)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najlepší pomer nákladov ku gólom a asistenciám</h3>${financeMoneyRows({headers:['Hráč','Góly','Asistencie','G+A','Náklad / G+A'],data:allCostPerContribution.map(x=>[x.p.name,String(x.goals),String(x.assists),String(x.contributions),fmtMoney(x.costPerContribution)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najlepší pomer ceny k jednému gólu</h3>${financeMoneyRows({headers:['Hráč','Góly','Náklady spolu','Náklad / gól'],data:allCostPerGoal.map(x=>[x.p.name,String(x.goals),fmtMoney(x.cost),fmtMoney(x.costPerGoal)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Najlepší pomer ceny k jednej asistencii</h3>${financeMoneyRows({headers:['Hráč','Asistencie','Náklady spolu','Náklad / asistencia'],data:allCostPerAssist.map(x=>[x.p.name,String(x.assists),fmtMoney(x.cost),fmtMoney(x.costPerAssist)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Hráči s najväčším počtom gólov</h3>${financeMoneyRows({headers:['Hráč','Post','Góly','Zápasy','Góly / 90 zápasov'],data:allGoals.map(x=>[x.p.name,financePosition(x.p),String(x.goals),String(x.appearances),x.goalsPerAppearance===null?'—':num(x.goalsPerAppearance)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Hráči s najväčším počtom asistencií</h3>${financeMoneyRows({headers:['Hráč','Post','Asistencie','Zápasy','Asistencie / 90 zápasov'],data:allAssists.map(x=>[x.p.name,financePosition(x.p),String(x.assists),String(x.appearances),x.assistsPerAppearance===null?'—':num(x.assistsPerAppearance)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Hráči s najväčším počtom gólových príspevkov</h3>${financeMoneyRows({headers:['Hráč','Post','Góly','Asistencie','G+A','Zápasy','G+A / 90 zápasov'],data:allContributions.map(x=>[x.p.name,financePosition(x.p),String(x.goals),String(x.assists),String(x.contributions),String(x.appearances),x.contributionsPerAppearance===null?'—':num(x.contributionsPerAppearance)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Hráči, na ktorých sme najviac zarobili</h3>${financeMoneyRows({headers:['Hráč','Post','Predajná suma','Odchod'],data:topEarners})}</div>`);
+ const totalTransferFees=allSpend+allSales,feeBalance=allSales-allSpend, wageShare=totalCosts?allWages/totalCosts*100:0, saleCoverage=allSpend+allWages?allSales/(allSpend+allWages)*100:0;
+ const paidSeasonCount=salaryRecords.length,playersWithWages=careerWageRecords.length;
+ const totalGoals=sum(playerEconomics.map(x=>x.goals)),totalAssists=sum(playerEconomics.map(x=>x.assists)),totalApps=sum(playerEconomics.map(x=>x.appearances));
+ const totalGA=totalGoals+totalAssists;
+ cards.push(`<div class="finance-card"><h3>Efektivita a pomery</h3>${financeMoneyRows({headers:['Ukazovateľ','Výsledok'],data:[['Saldo samotných prestupov',fmtMoney(feeBalance)],['Predaje / nákupy',allSpend?((allSales/allSpend)*100).toFixed(1)+' %':'N/A'],['Podiel platov na nákladoch',wageShare.toFixed(1)+' %'],['Pokrytie nákladov predajmi',saleCoverage.toFixed(1)+' %'],['Priemerný počet nákupov za sezónu',(incoming.length/10).toFixed(1)],['Priemerný počet predajov za sezónu',(outgoing.length/10).toFixed(1)],['Prestupové sumy spolu (nákupy + predaje)',fmtMoney(totalTransferFees)],['Hráči s aspoň jedným zadaným platom',String(playersWithWages)],['Počet zaplatených hráčsko-sezón',String(paidSeasonCount)],['Priemerný plat na jednu platenú hráčsko-sezónu',fmtMoney(avgWagePerPlayerSeason)],['Góly spolu / asistencie spolu',`${totalGoals} / ${totalAssists}`],['Gólové príspevky spolu',String(totalGA)],['Zápasy spolu',String(totalApps)],['Priemer G+A na zápas',totalApps?(totalGA/totalApps).toFixed(3):'—'],['Góly na zápas',totalApps?(totalGoals/totalApps).toFixed(3):'—'],['Asistencie na zápas',totalApps?(totalAssists/totalApps).toFixed(3):'—'],['G+A na 1 milión € nákladov',totalCosts?((totalGA/(totalCosts/1000000))).toFixed(2):'—']]})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Finančné saldo po postoch</h3>${financeMoneyRows({headers:['Post','Nákupy','Platy','Predaje','Saldo'],data:positionSeasons})}<p class="finance-note">Saldo postu = predajné sumy evidovaných hráčov mínus ich nákupné sumy a všetky evidované platy.</p></div>`);
+ cards.push(`<div class="finance-card"><h3>Najvyššie individuálne platy – všetky záznamy</h3>${financeMoneyRows({headers:['Hráč','Post','Sezóna','Plat'],data:[...salaryRecords].sort((a,b)=>b.wage-a.wage).map(x=>[x.p.name,financePosition(x.p),financeSeasonLabel(x.season),fmtMoney(x.wage)])})}</div>`);
+ cards.push(`<div class="finance-card"><h3>Celkové platy hráčov – všetci hráči</h3>${financeMoneyRows({headers:['Hráč','Post','Platy spolu','Počet platených sezón','Priemer za platenú sezónu'],data:allHighestSalary.map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.total),String(x.paidSeasons),fmtMoney(x.paidSeasons?x.total/x.paidSeasons:0)])})}<p class="finance-note">Priemer sa počíta len z reálne zadaných kladných platov. Sezóny bez vyplneného platu sa do priemeru nezapočítajú.</p></div>`);
+ analysis.innerHTML=cards.join('');
+}
+
 const THEMES=[
  {id:'default',name:'Pôvodná — FCArci',swatch:'#1688ff'},
  {id:'inferno',name:'Inferno — červená',swatch:'#ff4057'},
@@ -208,9 +486,49 @@ function deleteDatabase(){
  state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);state.slots=[null,null,null,null];
  Promise.all([0,1,2,3].map(i=>dbSet('slot_'+i,null))).then(()=>dbSet('current',allData())).then(()=>{alert('Databáza kariéry bola vymazaná.');buildFilters();renderTable();renderSlots();renderFinancialSummary();}).catch(()=>alert('Nepodarilo sa vymazať údaje.'));
 }
-function renderTable(){const table=document.getElementById('playersTable'), query=document.getElementById('search').value.toLowerCase();let shown=allColumnsForTable();let seasonFilter=document.getElementById('seasonFilter')?.value||'all';let players=state.players.map((p,i)=>({...p,__i:i})).filter(p=>((p.name||'').toLowerCase().includes(query)||(p.pos||'').toLowerCase().includes(query))&&playerInSeason(p,seasonFilter));let sort=document.getElementById('sortKey').value||state.sortKey;let dir=document.getElementById('sortDir').value||state.sortDir;if(sort){let c=shown.find(c=>c.key===sort)||columns.find(c=>c.key===sort);players.sort((a,b)=>{if(sort==='pos')return comparePosition(a,b,dir);let x=c?val(a,c):a[sort],y=c?val(b,c):b[sort];let moneyCol=(c&&(['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'));let nx=moneyCol?moneyNumber(x):Number(x),ny=moneyCol?moneyNumber(y):Number(y);let cmp=(!isNaN(nx)&&x!==''&&!isNaN(ny)&&y!=='')?nx-ny:String(x??'').localeCompare(String(y??''),'sk');return dir==='asc'?cmp:-cmp})}
-let thead='<thead><tr><th onclick="setSort(\'pos\')" title="Zoradiť podľa pozície">Pozícia</th><th onclick="setSort(\'name\')" title="Zoradiť podľa mena">Meno hráča</th>'+shown.map(c=>`<th class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'?'money':''}" onclick="setSort('${c.key}')" title="Klikni na zoradenie">${esc(c.label)}<span class="abbr">${esc(c.abbr)}</span></th>`).join('')+'<th>Akcia</th></tr></thead>';let body='<tbody>'+players.map((p,n)=>'<tr><td contenteditable="true" onblur="editCell('+p.__i+',\'pos\',this.textContent)">'+esc(p.pos)+'</td><td class="namecell" contenteditable="true" onblur="editCell('+p.__i+',\'name\',this.textContent)">'+esc(p.name)+'</td>'+shown.map(c=>{let v=val(p,c);if(['price','sale'].includes(c.key)||c.kind==='salary'||c.key==='salaryTotal'){const n=moneyNumber(v);v=n>=1000000?(Number.isInteger(n/1000000)?(n/1000000)+'M':(n/1000000).toLocaleString('en-US')+'M'):n>=1000?(Number.isInteger(n/1000)?(n/1000)+'k':(n/1000).toLocaleString('en-US')+'k'):String(v??'');}if(c.type==='computed'||c.type==='aggregate'||c.type==='salaryTotal'||c.summary||isDerived(c))return `<td class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'?'money':''}" style="color:var(--yellow);font-weight:700">${esc(v)}</td>`;return `<td class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale'].includes(c.key)||c.kind==='salary'?'money':''}" contenteditable="true" onblur="editCell(${p.__i},'${c.key}',this.textContent)" title="${esc(c.label)}">${esc(v)}</td>`}).join('')+`<td><button onclick="deletePlayer(${p.__i})" title="Vymazať hráča">✕</button></td></tr>`).join('')+'</tbody>';table.innerHTML=thead+body;document.getElementById('playerCount').textContent='Hráči: '+players.length;document.getElementById('columnCount').textContent='Zobrazené stĺpce: '+(shown.length+3);renderFinancialSummary()}
+function renderTable(){
+ const table=document.getElementById('playersTable'),query=document.getElementById('search').value.toLowerCase();
+ let shown=allColumnsForTable(),seasonFilter=document.getElementById('seasonFilter')?.value||'all';
+ let players=state.players.map((p,i)=>({...p,__i:i})).filter(p=>((p.name||'').toLowerCase().includes(query)||(p.pos||'').toLowerCase().includes(query))&&playerInSeason(p,seasonFilter));
+ let sort=document.getElementById('sortKey').value||state.sortKey,dir=document.getElementById('sortDir').value||state.sortDir;
+ if(sort){let c=shown.find(c=>c.key===sort)||columns.find(c=>c.key===sort);players.sort((a,b)=>{if(sort==='pos')return comparePosition(a,b,dir);let x=c?val(a,c):a[sort],y=c?val(b,c):b[sort];let moneyCol=(c&&(['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'));let nx=moneyCol?moneyNumber(x):Number(x),ny=moneyCol?moneyNumber(y):Number(y);let cmp=(!isNaN(nx)&&x!==''&&!isNaN(ny)&&y!=='')?nx-ny:String(x??'').localeCompare(String(y??''),'sk');return dir==='asc'?cmp:-cmp})}
+ let thead='<thead><tr><th onclick="setSort(\'pos\')" title="Zoradiť podľa pozície">Pozícia</th><th onclick="setSort(\'name\')" title="Zoradiť podľa mena">Meno hráča</th>'+shown.map(c=>`<th class="${['lastClub','leftTo'].includes(c.key)?'club':''} ${['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary'?'money':''}" onclick="setSort('${c.key}')" title="Klikni na zoradenie">${esc(c.label)}<span class="abbr">${esc(c.abbr)}</span></th>`).join('')+'<th>Akcia</th></tr></thead>';
+ let body='<tbody>'+players.map(p=>{
+  const pos=esc(p.pos),name=esc(p.name),playerId=esc(p.playerId);
+  const posCell=`<td><div class="cell-scroll" contenteditable="true" onblur="editCell(${p.__i},'pos',this.textContent)" data-fulltext="${pos}" title="${pos}">${pos}</div></td>`;
+  const nameCell=`<td class="namecell"><div class="name-with-profile"><span class="name-edit" contenteditable="true" onblur="editCell(${p.__i},'name',this.textContent)" data-fulltext="${name}" title="${name}">${name}</span><button class="profile-dot" onclick="openPlayerProfile('${playerId}')" title="Otvoriť profil hráča" aria-label="Otvoriť profil hráča">●</button></div></td>`;
+  const valueCells=shown.map(c=>{
+   let rawValue=val(p,c),v=rawValue;
+   const isMoney=['price','sale','salaryTotal'].includes(c.key)||c.kind==='salary';
+   if(isMoney)v=compactMoney(moneyNumber(rawValue));
+   const cls=`${['lastClub','leftTo'].includes(c.key)?'club':''} ${isMoney?'money':''}`;
+   const full=esc(isMoney?fmtMoney(rawValue):rawValue);
+   if(c.type==='computed'||c.type==='aggregate'||c.type==='salaryTotal'||c.summary||isDerived(c)){
+    return `<td class="${cls}" style="color:var(--yellow);font-weight:700"><div class="cell-scroll" data-fulltext="${full}" title="${full}">${esc(v)}</div></td>`;
+   }
+   const text=esc(v);
+   return `<td class="${cls}"><div class="cell-scroll" contenteditable="true" onblur="editCell(${p.__i},'${c.key}',this.textContent)" data-fulltext="${text}" title="${esc(c.label)}: ${full}">${text}</div></td>`;
+  }).join('');
+  return `<tr>${posCell}${nameCell}${valueCells}<td><button onclick="deletePlayer(${p.__i})" title="Vymazať hráča">✕</button></td></tr>`;
+ }).join('')+'</tbody>';
+ table.innerHTML=thead+body;
+ document.getElementById('playerCount').textContent='Hráči: '+players.length;
+ document.getElementById('columnCount').textContent='Zobrazené stĺpce: '+(shown.length+3);
+ renderFinancialSummary();if(currentSection==='finance')renderFinanceHub();
+}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function installCellLongTooltip(){
+ if(document.getElementById('cellLongTooltip'))return;
+ const tip=document.createElement('div');tip.id='cellLongTooltip';tip.setAttribute('role','status');document.body.appendChild(tip);
+ let holdTimer=null,active=null;
+ const show=el=>{if(!el)return;const full=el.getAttribute('data-fulltext')||el.textContent||'';if(!full.trim())return;tip.textContent=full;tip.classList.add('visible');const r=el.getBoundingClientRect();const left=Math.max(8,Math.min(window.innerWidth-tip.offsetWidth-8,r.left));const top=Math.max(8,Math.min(window.innerHeight-tip.offsetHeight-8,r.bottom+7));tip.style.left=left+'px';tip.style.top=top+'px';active=el;};
+ const hide=()=>{clearTimeout(holdTimer);tip.classList.remove('visible');active=null};
+ document.addEventListener('pointerdown',e=>{const el=e.target.closest('.cell-scroll,.finance-cell-scroll,.name-edit');if(!el)return;clearTimeout(holdTimer);holdTimer=setTimeout(()=>show(el),650)});
+ document.addEventListener('pointerup',()=>clearTimeout(holdTimer));document.addEventListener('pointercancel',hide);
+ document.addEventListener('pointerover',e=>{const el=e.target.closest('.cell-scroll,.finance-cell-scroll,.name-edit');if(!el||el.scrollWidth<=el.clientWidth)return;clearTimeout(holdTimer);holdTimer=setTimeout(()=>show(el),850)});
+ document.addEventListener('pointerout',e=>{if(active&&(!e.relatedTarget||!active.contains(e.relatedTarget)))hide()});
+ document.addEventListener('scroll',hide,true);document.addEventListener('click',e=>{if(!e.target.closest('.cell-scroll,.finance-cell-scroll,.name-edit'))hide()});
+}
 function editCell(i,key,value){if(!state.players[i])return;let c=columns.find(x=>x.key===key);state.players[i][key]=key.startsWith('salary')||['price','sale'].includes(key)?moneyNumber(value):c&&c.type==='number'?(Number(value.replace(',','.'))||0):value.trim();autosave();renderTable()}
 function addPlayer(){let name=prompt('Meno hráča:');if(name===null)return;let pos=prompt('Pozícia hráča (napr. ST, CM, GK):','CM');state.players.push(blankPlayer(pos||'',name));autosave();renderTable()}
 function deletePlayer(i){if(confirm(`Naozaj chceš vymazať hráča „${state.players[i].name}“?`)){state.players.splice(i,1);autosave();renderTable()}}
@@ -220,14 +538,21 @@ function selectAll(on){if(on)state.visible=columns.filter(c=>!c.core).map(c=>c.k
 function resetColumns(){state.visible=columns.filter(c=>!c.core).map(c=>c.key);buildFilters();autosave();renderTable()}
 let currentSection='stats';
 function showSection(id,fromPop=false){
+ if(!['stats','finance','settings'].includes(id))id='stats';
  document.getElementById('stats').classList.toggle('hidden',id!=='stats');
+ document.getElementById('finance').classList.toggle('hidden',id!=='finance');
  document.getElementById('settings').classList.toggle('hidden',id!=='settings');
- if(id==='settings')renderSlots();
- if(!fromPop && id!==currentSection && id==='settings' && location.hash!=='#settings')history.pushState({arcifcSection:'settings'},'','#settings');
- if(id==='stats' && !fromPop && location.hash==='#settings')history.pushState({arcifcSection:'stats'},'','#stats');
+ if(id==='settings')renderSlots();if(id==='finance')renderFinanceHub();
+ if(!fromPop && id!==currentSection){history.pushState({arcifcSection:id},'',id==='stats'?'#stats':'#'+id);}
  currentSection=id;
 }
-window.addEventListener('popstate',()=>{showSection(location.hash==='#settings'?'settings':'stats',true)});
+window.addEventListener('popstate',()=>{
+ if(state.profile){
+  if(state.profile.mode==='edit'){finishProfileEditOnBack();return}
+  closePlayerProfile(true);return;
+ }
+ showSection(location.hash==='#settings'?'settings':location.hash==='#finance'?'finance':'stats',true);
+});
 async function persistAllSlots(){for(let i=0;i<4;i++)await dbSet('slot_'+i,state.slots[i]??null);await dbSet('current',allData())}
 function renderSlots(){let root=document.getElementById('slots');root.innerHTML='';for(let i=0;i<4;i++){let el=document.createElement('div');el.className='slot';el.innerHTML=`<h3>Slot ${i+1}</h3><input id="slotname${i}" value="${esc(state.slotNames[i]||'')}" placeholder="Názov slotu" onchange="renameSlot(${i},this.value)"><div class="toolbar"><button onclick="saveSlot(${i})">Uložiť</button><button onclick="loadSlot(${i})">Načítať</button><button class="danger" onclick="deleteSlot(${i})">Vymazať</button><button onclick="downloadSlot(${i})">Stiahnuť JSON</button><button onclick="uploadSlot(${i})">Vložiť JSON</button></div><p class="muted">${state.slots[i]?'Slot obsahuje uložené dáta.':'Slot je prázdny.'}</p><input type="file" id="slotfile${i}" accept=".json,application/json" class="hidden"></div>`;root.append(el)}}
 function renameSlot(i,name){state.slotNames[i]=name;autosave()}
@@ -263,13 +588,145 @@ function downloadSlot(i){if(!state.slots[i]){alert('Slot je prázdny.');return}d
 function exportCurrent(){downloadBlob('FCArci-zaloha.json',allData())}
 function uploadSlot(i){let f=document.getElementById('slotfile'+i);f.onchange=async()=>{if(!f.files[0])return;try{let d=JSON.parse(await f.files[0].text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm(`Vložiť JSON do slotu ${i+1}?`))return;state.slots[i]=d;await persistAllSlots();renderSlots()}catch(e){alert('Súbor nie je platná záloha FCArci.')}finally{f.value=''}};f.click()}
 async function importJSON(){let f=document.getElementById('jsonFile').files[0];if(!f){alert('Najprv vyber JSON súbor.');return}try{let d=JSON.parse(await f.text());if(!d||!Array.isArray(d.players))throw Error();if(!confirm('Import nahradí aktuálnu tabuľku a nastavenia. Pokračovať?'))return;applyData(d);await persistAllSlots();buildFilters();renderTable();renderSlots();alert('JSON bol načítaný.')}catch(e){alert('Nepodarilo sa načítať JSON. Skontroluj, či ide o zálohu tejto aplikácie.')} }
-function applyData(d){state.players=d.players.map(p=>({...blankPlayer(),...p}));state.visible=Array.isArray(d.visible)?d.visible.filter(k=>columns.some(c=>c.key===k)||['GC','ZC','AC'].includes(k)):columns.filter(c=>!c.core).map(c=>c.key);state.slotNames=Array.isArray(d.slotNames)?[...d.slotNames]:state.slotNames;state.slots=Array.isArray(d.slots)?[...d.slots]:state.slots;while(state.slots.length<4)state.slots.push(null);state.slots=state.slots.slice(0,4);state.theme=d.theme||state.theme||'default';applyTheme(state.theme,false);state.sortKey=d.sortKey||'GC';state.sortDir=d.sortDir||'desc';document.getElementById('sortKey').value=state.sortKey;document.getElementById('sortDir').value=state.sortDir;if(d.search)document.getElementById('search').value=d.search;if(d.seasonFilter&&document.getElementById('seasonFilter'))document.getElementById('seasonFilter').value=d.seasonFilter;state.restoreScroll=[d.scrollTop||0,d.scrollLeft||0];state.restoreSection=d.section||'stats'}
+function applyData(d){state.players=d.players.map(p=>({...blankPlayer(),...p,playerId:p.playerId||newPlayerId()}));state.visible=Array.isArray(d.visible)?d.visible.filter(k=>columns.some(c=>c.key===k)||['GC','ZC','AC'].includes(k)):columns.filter(c=>!c.core).map(c=>c.key);state.slotNames=Array.isArray(d.slotNames)?[...d.slotNames]:state.slotNames;state.slots=Array.isArray(d.slots)?[...d.slots]:state.slots;while(state.slots.length<4)state.slots.push(null);state.slots=state.slots.slice(0,4);state.theme=d.theme||state.theme||'default';applyTheme(state.theme,false);state.sortKey=d.sortKey||'GC';state.sortDir=d.sortDir||'desc';document.getElementById('sortKey').value=state.sortKey;document.getElementById('sortDir').value=state.sortDir;if(d.search)document.getElementById('search').value=d.search;if(d.seasonFilter&&document.getElementById('seasonFilter'))document.getElementById('seasonFilter').value=d.seasonFilter;state.restoreScroll=[d.scrollTop||0,d.scrollLeft||0];state.restoreSection=d.section||'stats';state.profile=d.profile&&d.profile.playerId?d.profile:null}
+
+const PROFILE_SCOPES=[
+ {key:'all',label:'Všetky súťaže',kind:'all'},
+ {key:'league',label:'Domáca liga',kind:'direct',bases:['ZL','GL','AL']},
+ {key:'europe',label:'Európa celkom',kind:'derived',bases:['ZE','GE','AE']},
+ {key:'europeHF',label:'Európa — hlavná fáza',kind:'derived',bases:['ZEH','GEH','AEH']},
+ {key:'europeQual',label:'Európa — predkolá',kind:'derived',bases:['ZEP','GEP','AEP']},
+ {key:'ucl',label:'Liga majstrov — celkom',kind:'sum',parts:[['ZLMH','ZLMP'],['GLMH','GLMP'],['ALMH','ALMP']]},
+ {key:'uclHF',label:'Liga majstrov — hlavná fáza',kind:'direct',bases:['ZLMH','GLMH','ALMH']},
+ {key:'uclQual',label:'Liga majstrov — predkolá',kind:'direct',bases:['ZLMP','GLMP','ALMP']},
+ {key:'uel',label:'Európska liga — celkom',kind:'sum',parts:[['ZELH','ZELP'],['GELH','GELP'],['AELH','AELP']]},
+ {key:'uelHF',label:'Európska liga — hlavná fáza',kind:'direct',bases:['ZELH','GELH','AELH']},
+ {key:'uelQual',label:'Európska liga — predkolá',kind:'direct',bases:['ZELP','GELP','AELP']},
+ {key:'uecl',label:'Konferenčná liga — celkom',kind:'sum',parts:[['ZKLH','ZKLP'],['GKLH','GKLP'],['AKLH','AKLP']]},
+ {key:'ueclHF',label:'Konferenčná liga — hlavná fáza',kind:'direct',bases:['ZKLH','GKLH','AKLH']},
+ {key:'ueclQual',label:'Konferenčná liga — predkolá',kind:'direct',bases:['ZKLP','GKLP','AKLP']}
+];
+function profileScopeValues(p,scope,season){
+ if(scope.kind==='all')return [seasonValue(p,'Z',season,'ZC'),seasonValue(p,'G',season,'GC'),seasonValue(p,'A',season,'AC')];
+ if(scope.kind==='derived')return scope.bases.map((b,i)=>seasonValue(p,['Z','G','A'][i],season,b));
+ if(scope.kind==='direct')return scope.bases.map(b=>raw(p,b,season));
+ if(scope.kind==='sum')return scope.parts.map(pair=>raw(p,pair[0],season)+raw(p,pair[1],season));
+ return [0,0,0];
+}
+function profileHasStats(values){return values.some(v=>Number(v)>0)}
+function profileSeasonLabel(n){return `${2024+n}/${String(2025+n).slice(-2)}`}
+function latestObservedSeason(){
+ let latest=1;
+ for(const player of state.players){
+  const arrival=seasonIndex(player.arrival),departure=seasonIndex(player.departure,true);
+  if(arrival!==null)latest=Math.max(latest,arrival);
+  if(departure!==null)latest=Math.max(latest,departure);
+  for(let n=1;n<=10;n++){
+   if(moneyNumber(player['salary'+n])>0||BASE.some(x=>raw(player,x[1],n)>0))latest=Math.max(latest,n);
+  }
+ }
+ return Math.min(10,latest);
+}
+function profileSeasonCount(p){
+ const labels=[],arrival=seasonIndex(p.arrival),departure=seasonIndex(p.departure,true);
+ if(arrival!==null){
+  // Count every season between arrival and departure, including a half-season.
+  const end=departure===null?latestObservedSeason():(departureIsSeasonStart(p.departure)?departure-1:departure);
+  for(let n=Math.max(1,arrival);n<=Math.min(10,end);n++)if(playerInSeason(p,n))labels.push(profileSeasonLabel(n));
+ }else{
+  // Legacy records without an arrival date: count seasons evidenced by salary or stats.
+  for(let n=1;n<=10;n++){
+   if(moneyNumber(p['salary'+n])>0||BASE.some(x=>raw(p,x[1],n)>0))labels.push(profileSeasonLabel(n));
+  }
+ }
+ return {count:labels.length,labels};
+}
+function profileStatCard(p,scope){
+ const seasons=Array.from({length:10},(_,i)=>({season:i+1,values:profileScopeValues(p,scope,i+1)}));
+ const relevant=seasons.filter(x=>profileHasStats(x.values));
+ const total=[0,0,0];seasons.forEach(x=>x.values.forEach((v,i)=>total[i]+=Number(v)||0));
+ if(scope.key!=='all'&&!profileHasStats(total))return '';
+ const rows=relevant.map(x=>`<div class="profile-season-row"><span>${profileSeasonLabel(x.season)}</span><b>${x.values[0]}</b><b>${x.values[1]}</b><b>${x.values[2]}</b></div>`).join('');
+ return `<article class="profile-stat-card"><h3>${esc(scope.label)}</h3><div class="profile-stat-total">${[['Zápasy',total[0]],['Góly',total[1]],['Asistencie',total[2]]].map(x=>`<div class="profile-stat-chip"><strong>${x[1]}</strong><span>${x[0]}</span></div>`).join('')}</div><div class="profile-season-list"><div class="profile-season-row"><span><b>Sezóna</b></span><b>Z</b><b>G</b><b>A</b></div>${rows||'<div class="muted small">Bez zápasových štatistík po sezónach.</div>'}</div></article>`;
+}
+function profileInfoRow(label,value){return `<div class="profile-info-row"><span>${esc(label)}</span><strong>${esc(value||'—')}</strong></div>`}
+function renderPlayerProfile(){
+ const root=document.getElementById('profileOverlay');if(!root||!state.profile)return;
+ const p=state.players.find(x=>x.playerId===state.profile.playerId);
+ if(!p){state.profile=null;root.classList.add('hidden');return}
+ const editing=state.profile.mode==='edit',d=editing?(state.profile.draft||{...p}):p;
+ const seasons=profileSeasonCount(p),salaryTotal=SALARIES.reduce((n,x)=>n+moneyNumber(p[x.key]),0);
+ const stats=PROFILE_SCOPES.map(sc=>profileStatCard(p,sc)).filter(Boolean).join('');
+ const transfer=`<div class="profile-info-card"><h3>Prestupová história</h3>${profileInfoRow('Prišiel z',p.lastClub)}${profileInfoRow('Dátum / sezóna príchodu',p.arrival)}${profileInfoRow('Prestupová čiastka',p.price?fmtMoney(moneyNumber(p.price)):'—')}${profileInfoRow('Odišiel do',p.leftTo)}${profileInfoRow('Dátum / sezóna odchodu',p.departure)}${profileInfoRow('Predajná čiastka',p.sale?fmtMoney(moneyNumber(p.sale)):'—')}</div>`;
+ const salaryRows=SALARIES.filter(x=>moneyNumber(p[x.key])>0).map(x=>profileInfoRow(profileSeasonLabel(x.season),fmtMoney(moneyNumber(p[x.key])))).join('');
+ const salaryCard=`<div class="profile-info-card"><h3>Plat hráča</h3>${profileInfoRow('Celkový plat',fmtMoney(salaryTotal))}${salaryRows||'<div class="muted small">Zatiaľ nie je zadaný žiadny sezónny plat.</div>'}</div>`;
+ let editHtml='';
+ if(editing){
+  const baseFields=[['name','Meno hráča','text'],['pos','Pozícia','text'],['lastClub','Prišiel z klubu','text'],['arrival','Príchod (napr. 25/26 alebo 26)','text'],['price','Prestupová čiastka (€)','text'],['leftTo','Odišiel do klubu','text'],['departure','Odchod (napr. 26 alebo 26/27)','text'],['sale','Predajná čiastka (€)','text']];
+  editHtml=`<div class="profile-section-title"><h2>Úprava hráča</h2><span class="muted">Všetky polia sú upraviteľné.</span></div><details class="profile-edit-section" open><summary>Základné údaje a prestupy</summary><div class="profile-form-grid">${baseFields.map(([key,label,type])=>`<label class="profile-field">${label}<input type="${type}" value="${esc(d[key]??'')}" oninput="updateProfileField('${key}',this.value)" ${key==='name'?'required':''}></label>`).join('')}</div></details><details class="profile-edit-section" open><summary>Platy podľa sezón</summary><div class="profile-form-grid">${SALARIES.map(x=>`<label class="profile-field">Plat — ${profileSeasonLabel(x.season)} (€)<input type="number" min="0" step="any" value="${esc(d[x.key]??0)}" oninput="updateProfileField('${x.key}',this.value)"></label>`).join('')}</div></details>`;
+  for(let season=1;season<=10;season++){
+   const fields=BASE.map(([label,abbr,kind])=>`<label class="profile-field">${esc(label)}<input type="number" min="0" step="1" value="${Number(d[abbr+season])||0}" oninput="updateProfileField('${abbr+season}',this.value)"></label>`).join('');
+   editHtml+=`<details class="profile-edit-section"><summary>${profileSeasonLabel(season)} — kompletné štatistiky (${BASE.length} položiek)</summary><div class="profile-stat-edit-grid">${fields}</div></details>`;
+  }
+ }
+ root.classList.remove('hidden');
+ root.innerHTML=`<div class="profile-topbar"><button onclick="profileBack()" title="Späť">${editing?'← Späť na profil':'← Späť na hráčov'}</button><div class="profile-heading">${editing?'Úprava hráča':'Profil hráča'}</div>${editing?'<span class="profile-save-note" id="profileSaveNote">● Zmeny sa priebežne ukladajú</span><button class="primary" onclick="saveProfileEdits()">Uložiť zmeny</button>':'<button class="primary" onclick="startPlayerEdit()">✎ Upraviť hráča</button>'}</div><div class="profile-content"><section class="profile-hero"><div class="profile-hero-main"><div class="profile-avatar">${esc(String(d.pos||'').slice(0,3)||'⚽')}</div><div><div class="profile-name">${esc(d.name||'Nepomenovaný hráč')}</div><div class="profile-sub">${esc(d.pos||'Bez pozície')} · FCArci kariéra</div><div class="profile-pills"><span class="profile-pill">${seasons.count} ${seasons.count===1?'sezóna':seasons.count>=2&&seasons.count<=4?'sezóny':'sezón'} v klube</span><span class="profile-pill">Plat spolu: ${fmtMoney(salaryTotal)}</span>${d.arrival?`<span class="profile-pill">Príchod ${esc(d.arrival)}</span>`:''}</div></div></div></section>${editing?editHtml:`<div class="profile-metrics"><div class="profile-metric"><strong>${sum(p,'Z')}</strong><span>Zápasy celkom</span></div><div class="profile-metric"><strong>${sum(p,'G')}</strong><span>Góly celkom</span></div><div class="profile-metric"><strong>${sum(p,'A')}</strong><span>Asistencie celkom</span></div><div class="profile-metric"><strong>${seasons.count}</strong><span>Sezóny v klube</span></div></div><div class="profile-section-title"><h2>Prestupy a pôsobenie v klube</h2></div><div class="profile-grid">${transfer}<div class="profile-info-card"><h3>Pôsobenie v klube</h3>${profileInfoRow('Počet sezón',String(seasons.count))}${profileInfoRow('Sezóny',seasons.labels.join(', '))}${profileInfoRow('Aktuálna pozícia',p.pos)}</div>${salaryCard}</div><div class="profile-section-title"><h2>Štatistiky hráča</h2><span class="muted">Z / G / A · zobrazujú sa len relevantné súťaže</span></div><div class="profile-grid">${stats||'<div class="profile-empty">Zatiaľ nie sú zadané žiadne štatistiky.</div>'}</div><p class="profile-danger-note">Súhrny sú vypočítané zo sezónnych údajov. Súťaž sa zobrazí až vtedy, keď má hráč aspoň jeden zápas, gól alebo asistenciu v danej kategórii.</p>`}</div>`;
+}
+function openPlayerProfile(playerId){
+ const p=state.players.find(x=>x.playerId===playerId);if(!p)return;
+ state.profile={playerId,mode:'view',draft:null,dirty:false};history.pushState({arcifcSection:'player',playerId},'','#player');renderPlayerProfile();
+}
+function startPlayerEdit(){
+ if(!state.profile)return;const p=state.players.find(x=>x.playerId===state.profile.playerId);if(!p)return;
+ state.profile={...state.profile,mode:'edit',draft:{...p},dirty:false};
+ history.pushState({arcifcSection:'player-edit',playerId:p.playerId},'','#player-edit');renderPlayerProfile();
+}
+function updateProfileField(key,value){
+ if(!state.profile||state.profile.mode!=='edit')return;
+ const c=columns.find(x=>x.key===key);
+ state.profile.draft[key]=(key.startsWith('salary')||['price','sale'].includes(key))?moneyNumber(value):(c&&c.type==='number'?(Number(String(value).replace(',','.'))||0):value);
+ state.profile.dirty=true;autosave();
+ const note=document.getElementById('profileSaveNote');if(note)note.textContent='◌ Ukladám zmeny…';
+}
+function commitProfileDraft(){
+ if(!state.profile)return;
+ if(!String(state.profile.draft?.name||'').trim()){alert('Meno hráča nemôže zostať prázdne.');return;}
+ const i=state.players.findIndex(x=>x.playerId===state.profile.playerId);if(i<0)return;
+ state.players[i]={...state.players[i],...state.profile.draft,playerId:state.profile.playerId};
+ state.profile={playerId:state.profile.playerId,mode:'view',draft:null,dirty:false};
+ history.replaceState({arcifcSection:'player',playerId:state.profile.playerId},'','#player');
+ autosave();renderTable();renderPlayerProfile();
+}
+function saveProfileEdits(){commitProfileDraft()}
+function discardProfileDraft(){
+ if(!state.profile)return;
+ state.profile={playerId:state.profile.playerId,mode:'view',draft:null,dirty:false};
+ history.replaceState({arcifcSection:'player',playerId:state.profile.playerId},'','#player');
+ autosave();renderPlayerProfile();
+}
+function finishProfileEditOnBack(){
+ if(!state.profile||state.profile.mode!=='edit')return;
+ if(!state.profile.dirty){discardProfileDraft();return;}
+ const save=confirm('Chceš uložiť zmeny hráča?\\n\\nOK = uložiť zmeny\\nZrušiť = zahodiť úpravy a vrátiť sa na profil.');
+ if(save)commitProfileDraft();else discardProfileDraft();
+}
+function profileBack(){
+ if(!state.profile)return;
+ if(state.profile.mode==='edit'){finishProfileEditOnBack();return}
+ if(history.state&&history.state.arcifcSection==='player')history.back();else closePlayerProfile(false);
+}
+function closePlayerProfile(fromPop=false){
+ state.profile=null;const root=document.getElementById('profileOverlay');if(root)root.classList.add('hidden');
+ if(!fromPop&&location.hash!=='#stats')history.replaceState({arcifcSection:'stats'},'','#stats');
+ showSection('stats',true);renderTable();autosave();
+}
+
 function setupSort(){let s=document.getElementById('sortKey');const seen=new Set();const sortable=[{key:'pos',label:'Pozícia (GK → ST)'},{key:'name',label:'Meno hráča'},...columns.filter(c=>['number','computed','aggregate','salaryTotal'].includes(c.type)||['price','sale'].includes(c.key)).map(c=>({key:c.key,label:c.label+' ('+c.abbr+')'}))].filter(c=>{if(seen.has(c.key))return false;seen.add(c.key);return true});s.innerHTML='<option value="">Zoradiť podľa…</option>'+sortable.map(c=>`<option value="${c.key}">${esc(c.label)}</option>`).join('')}
 function legend(){let root=document.getElementById('legend');root.innerHTML=[['Z','Zápasy'],['G','Góly'],['A','Asistencie'],['L','Liga'],['E','Európa'],['P','Predkolo'],['H','Hlavná fáza'],['LM','Liga majstrov'],['EL','Európska liga (UEFA)'],['KL','Konferenčná liga'],['C','Celkom']].map(x=>`<label><b>${x[0]}</b> — ${x[1]}</label>`).join('')}
-(async function init(){if(!location.hash)history.replaceState({arcifcSection:'stats'},'','#stats');try{await openDB();let saved=await dbGet('current');if(saved)applyData(saved);else{state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);await dbSet('current',allData());}
+(async function init(){installCellLongTooltip();if(!location.hash)history.replaceState({arcifcSection:'stats'},'','#stats');try{await openDB();let saved=await dbGet('current');if(saved)applyData(saved);else{state.players=[];state.visible=columns.filter(c=>!c.core).map(c=>c.key);await dbSet('current',allData());}
  // Recover each slot from its own IndexedDB record; migrate slots from older current-save format once.
  for(let i=0;i<4;i++){let independent=await dbGet('slot_'+i);if(independent!==undefined){state.slots[i]=independent;}else if(state.slots[i]){await dbSet('slot_'+i,state.slots[i]);}}
  await dbSet('current',allData());
- }catch(e){alert('Lokálne ukladanie nie je dostupné. Skús otvoriť aplikáciu v bežnom prehliadači.')}setupSort();applyTheme(state.theme||'default',false);buildFilters();renderTable();legend();const stats=document.getElementById('stats');const tablePanel=stats.querySelector('.panel:nth-of-type(2)');const filterPanel=stats.querySelector('.panel:nth-of-type(1)');const summary=document.getElementById('financialSummary');if(tablePanel&&summary){stats.insertBefore(tablePanel,stats.firstChild);stats.insertBefore(summary,tablePanel.nextSibling);stats.appendChild(filterPanel);}if(state.restoreScroll){const w=document.querySelector('.tablewrap');w.scrollTop=state.restoreScroll[0];w.scrollLeft=state.restoreScroll[1]}if(state.restoreSection==='settings')showSection('settings',true);window.addEventListener('pagehide',()=>{try{db.transaction('data','readwrite').objectStore('data').put(allData(),'current')}catch(e){}});if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});})();
+ }catch(e){alert('Lokálne ukladanie nie je dostupné. Skús otvoriť aplikáciu v bežnom prehliadači.')}setupSort();applyTheme(state.theme||'default',false);buildFilters();renderTable();legend();const stats=document.getElementById('stats');const tablePanel=stats.querySelector('.panel:nth-of-type(2)');const filterPanel=stats.querySelector('.panel:nth-of-type(1)');const summary=document.getElementById('financialSummary');if(tablePanel&&summary){stats.insertBefore(tablePanel,stats.firstChild);stats.insertBefore(summary,tablePanel.nextSibling);stats.appendChild(filterPanel);}if(state.restoreScroll){const w=document.querySelector('.tablewrap');w.scrollTop=state.restoreScroll[0];w.scrollLeft=state.restoreScroll[1]}if(state.restoreSection==='settings')showSection('settings',true);else if(state.restoreSection==='finance')showSection('finance',true);if(state.profile){if(!state.players.some(p=>p.playerId===state.profile.playerId))state.profile=null;else{history.replaceState({arcifcSection:state.profile.mode==='edit'?'player-edit':'player',playerId:state.profile.playerId},'',state.profile.mode==='edit'?'#player-edit':'#player');renderPlayerProfile();}}window.addEventListener('pagehide',()=>{try{db.transaction('data','readwrite').objectStore('data').put(allData(),'current')}catch(e){}});if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});})();
 </script>
 </body></html>
