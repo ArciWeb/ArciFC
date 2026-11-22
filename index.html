@@ -165,6 +165,10 @@ td.namecell{min-width:125px!important;width:133px!important;max-width:161px!impo
 .career-setting-item{border:1px solid var(--theme-line);background:var(--theme-panel2);border-radius:10px;padding:11px;display:flex;flex-direction:column;gap:6px}
 .career-setting-item label{font-weight:700;font-size:13px;color:var(--theme-text)}
 .career-setting-item input{width:100%;font-weight:700}
+/* Platová FPP — podiel miezd na pôvodnom sezónnom rozpočte. */
+.salary-fpp-good{color:#28d89a!important;font-weight:800}
+.salary-fpp-warning{color:#ffbd59!important;font-weight:800}
+.salary-fpp-danger{color:#ff647c!important;font-weight:900}
 </style>
 </head>
 <body>
@@ -191,14 +195,14 @@ td.namecell{min-width:125px!important;width:133px!important;max-width:161px!impo
  <div class="panel" id="financialSummary">
   <h2>Finančný prehľad podľa sezóny</h2>
   <div id="financialRows" class="bottom"></div>
-  <div class="finance-guide"><strong>Ako čítať finančný prehľad podľa sezóny</strong><p>Každá karta predstavuje jednu sezónu v chronologickom poradí podľa nastavenia prvej sezóny a počtu sezón kariéry. Náklady na prestupy sčítavajú nákupné sumy hráčov, ktorých dátum príchodu patrí do danej sezóny. Náklady na platy sčítavajú platy hráčov v danej sezóne. Zisk z predaja zahŕňa predajnú sumu hráčov s odchodom v danej sezóne. Karta zobrazuje aj priemerné vážené hodnotenie tímu v danej sezóne.</p></div>
+  <div class="finance-guide"><strong>Ako čítať finančný prehľad podľa sezóny</strong><p>Každá karta predstavuje jednu sezónu v chronologickom poradí podľa nastavenia prvej sezóny a počtu sezón kariéry. Náklady na prestupy sčítavajú nákupné sumy hráčov, ktorých dátum príchodu patrí do danej sezóny. Náklady na platy sčítavajú platy hráčov v danej sezóne. Zisk z predaja zahŕňa predajnú sumu hráčov s odchodom v danej sezóne. Karta zobrazuje aj priemerné vážené hodnotenie tímu v danej sezóne. Platová FPP = náklady na platy ÷ pôvodný rozpočet × 100. Hodnota pod 70 % je zelená, 70,00–75,00 % oranžová a nad 75,00 % červená (75,01 % už červená). Bez zadaného kladného rozpočtu sa zobrazí pomlčka.</p></div>
  </div>
 </section>
 <section id="finance" class="hidden">
  <div class="panel">
   <h2>Prestupy, financie a výkonnostná ekonomika klubu</h2>
   <p class="muted">Kompletný finančný a výkonnostný rozbor kariéry vrátane vážených zápasových hodnotení (5.00 – 10.00), indexu hodnoty za peniaze, ceny za dobrý/elitný výkon a pokročilých analytických matíc.</p>
-  <div class="finance-controls"><span class="finance-note">Výber sezóny filtruje finančnú tabuľku a zoznam prestupov; súhrnné rebríčky a KPI zobrazujú celú kariéru.</span><label class="muted">Prestupy <select id="financeTransferFilter" onchange="renderFinanceHub()"><option value="both">Príchody aj odchody</option><option value="in">Iba príchody</option><option value="out">Iba odchody</option></select></label><label class="muted">Sezóna <select id="financeSeasonFilter" onchange="renderFinanceHub()"></select></label></div>
+  <div class="finance-controls"><span class="finance-note">Oba filtre sa uplatnia na všetky KPI, finančné tabuľky, rebríčky aj súhrnné výpočty. Pri voľbe „Iba príchody/odchody“ sa hráčska analytika počíta len z hráčov s príslušným prestupom v zvolenom rozsahu.</span><label class="muted">Prestupy <select id="financeTransferFilter" onchange="renderFinanceHub()"><option value="both">Príchody aj odchody</option><option value="in">Iba príchody</option><option value="out">Iba odchody</option></select></label><label class="muted">Sezóna <select id="financeSeasonFilter" onchange="renderFinanceHub()"></select></label></div>
   <div id="financeKpis" class="finance-kpis"></div>
  </div>
  <div class="panel"><div class="finance-section-title"><h2>Sezónny rozpočet</h2><span class="muted">Rozpočet môžeš kedykoľvek upraviť</span></div><p class="finance-note">Zadaj pôvodný rozpočet pre každú sezónu. Zostatok = rozpočet − nákupy − platy + príjmy z predaja. Nezadaný rozpočet sa nepovažuje za nulu a jeho výsledok sa nevyhodnocuje.</p><div id="seasonBudgetTable" class="finance-table-wrap"></div><div class="finance-guide"><strong>Ako sa počíta rozpočet</strong><p>Rozpočet je počiatočný sezónny limit, ktorý zadávaš ručne. Od neho sa odpočítajú náklady na nákupy a zadané sezónne platy; príjmy z predaja sa pripočítajú späť. Čerpanie rozpočtu zobrazuje hrubé náklady (nákupy + platy) voči pôvodnému rozpočtu.</p></div></div>
@@ -749,14 +753,21 @@ function seasonFinancials(season){
  return {season,label:seasonLabel(season),budget,hasBudget,spend,wages,sales,expenses,remaining,usage,teamRating,ratedMatches,status:!hasBudget?'neutral':remaining>=0?'positive':'negative'};
 }
 function moneyToneClass(value){return Number(value)>0?'finance-positive':Number(value)<0?'finance-negative':'finance-neutral'}
+function salaryFppDisplay(financials){
+ if(!financials.hasBudget||financials.budget<=0)return {value:'—',className:'finance-neutral'};
+ const percentage=(financials.wages/financials.budget)*100;
+ const displayedPercentage=Math.round((percentage+Number.EPSILON)*100)/100;
+ const className=displayedPercentage<70?'salary-fpp-good':displayedPercentage<=75?'salary-fpp-warning':'salary-fpp-danger';
+ return {value:displayedPercentage.toFixed(2)+' %',className};
+}
 function renderFinancialSummary(){
  const root=document.getElementById('financialRows'); if(!root)return;
  const sc=getSeasonCount();
  root.innerHTML=Array.from({length:sc},(_,i)=>{
   const x=seasonFinancials(i+1),remaining=x.hasBudget?fmtMoney(x.remaining):'Rozpočet nezadaný';
   const tone=x.hasBudget?moneyToneClass(x.remaining):'finance-neutral';
-  const rClass=ratingClass(x.teamRating);
-  return `<div class="slot"><h3>${x.label}</h3><div>Pôvodný rozpočet: <b>${x.hasBudget?fmtMoney(x.budget):'—'}</b></div><div>Náklady na prestupy: <b>${fmtMoney(x.spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(x.wages)}</b></div><div>Zisk z predaja: <b class="finance-positive">${fmtMoney(x.sales)}</b></div><div>Zostatok rozpočtu: <b class="${tone}">${remaining}</b></div><div>Priemerné hodnotenie tímu: <b class="${rClass}">${fmtRating(x.teamRating)}</b> <span class="muted small">(${x.ratedMatches} záp.)</span></div></div>`;
+  const rClass=ratingClass(x.teamRating),fpp=salaryFppDisplay(x);
+  return `<div class="slot"><h3>${x.label}</h3><div>Pôvodný rozpočet: <b>${x.hasBudget?fmtMoney(x.budget):'—'}</b></div><div>Náklady na prestupy: <b>${fmtMoney(x.spend)}</b></div><div>Náklady na platy: <b>${fmtMoney(x.wages)}</b></div><div>Platová FPP: <b class="${fpp.className}">${fpp.value}</b></div><div>Zisk z predaja: <b class="finance-positive">${fmtMoney(x.sales)}</b></div><div>Zostatok rozpočtu: <b class="${tone}">${remaining}</b></div><div>Priemerné hodnotenie tímu: <b class="${rClass}">${fmtRating(x.teamRating)}</b> <span class="muted small">(${x.ratedMatches} záp.)</span></div></div>`;
  }).join('');
 }
 function updateSeasonBudget(season,value){
@@ -766,15 +777,15 @@ function updateSeasonBudget(season,value){
  autosave();renderSeasonBudgets();renderFinancialSummary();
  if(currentSection==='finance')renderFinanceHub();
 }
-function renderSeasonBudgets(){
+function renderSeasonBudgets(scope=financeFilterContext()){
  const root=document.getElementById('seasonBudgetTable');if(!root)return;
- const sc=getSeasonCount();
- const rows=Array.from({length:sc},(_,i)=>seasonFinancials(i+1));
+ const seasonNumbers=scope.selected===null?Array.from({length:scope.sc},(_,i)=>i+1):[scope.selected];
+ const rows=seasonNumbers.map(season=>financeSeasonFinancials(season,scope));
  const totalBudgeted=rows.filter(x=>x.hasBudget).reduce((n,x)=>n+x.budget,0);
  const totalResult=rows.filter(x=>x.hasBudget).reduce((n,x)=>n+x.remaining,0);
  const budgetedRows=rows.filter(x=>x.hasBudget),budgetedCount=budgetedRows.length,totalExpenses=budgetedRows.reduce((n,x)=>n+x.expenses,0),totalSales=budgetedRows.reduce((n,x)=>n+x.sales,0),totalSpend=budgetedRows.reduce((n,x)=>n+x.spend,0),totalWages=budgetedRows.reduce((n,x)=>n+x.wages,0);
  const body=rows.map(x=>`<tr><td>${x.label}</td><td><input class="budget-input" type="number" min="0" step="any" inputmode="decimal" aria-label="Rozpočet ${x.label} v eurách" placeholder="Zadaj €" value="${x.hasBudget?esc(x.budget):''}" onchange="updateSeasonBudget(${x.season},this.value)"></td><td>${fmtMoney(x.spend)}</td><td>${fmtMoney(x.wages)}</td><td class="finance-positive">${fmtMoney(x.sales)}</td><td>${fmtMoney(x.expenses)}</td><td class="${x.hasBudget?moneyToneClass(x.remaining):'finance-neutral'}">${x.hasBudget?fmtMoney(x.remaining):'—'}</td><td>${x.usage===null?'—':x.usage.toFixed(1)+' %'}</td><td><span class="budget-status ${x.status}">${x.status==='positive'?'V pluse':x.status==='negative'?'V strate':'Nezadaný rozpočet'}</span></td></tr>`).join('');
- root.innerHTML=`<table class="finance-table budget-table"><thead><tr><th>Sezóna</th><th>Pôvodný rozpočet (€)</th><th>Nákupy</th><th>Platy</th><th>Predaje</th><th>Výdavky spolu</th><th>Zostatok</th><th>Čerpanie</th><th>Výsledok</th></tr></thead><tbody>${body}<tr><th>Spolu (${budgetedCount}/${sc} rozpočtov)</th><th>${fmtMoney(totalBudgeted)}</th><th>${fmtMoney(totalSpend)}</th><th>${fmtMoney(totalWages)}</th><th>${fmtMoney(totalSales)}</th><th>${fmtMoney(totalExpenses)}</th><th class="${budgetedCount?moneyToneClass(totalResult):'finance-neutral'}">${budgetedCount?fmtMoney(totalResult):'—'}</th><th>—</th><th>${budgetedCount?`<span class="budget-status ${totalResult>=0?'positive':'negative'}">${totalResult>=0?'V pluse':'V strate'}</span>`:'—'}</th></tr></tbody></table>`;
+ root.innerHTML=`<table class="finance-table budget-table"><thead><tr><th>Sezóna</th><th>Pôvodný rozpočet (€)</th><th>Nákupy</th><th>Platy</th><th>Predaje</th><th>Výdavky spolu</th><th>Zostatok</th><th>Čerpanie</th><th>Výsledok</th></tr></thead><tbody>${body}<tr><th>Spolu (${budgetedCount}/${rows.length} rozpočtov vo filtri)</th><th>${fmtMoney(totalBudgeted)}</th><th>${fmtMoney(totalSpend)}</th><th>${fmtMoney(totalWages)}</th><th>${fmtMoney(totalSales)}</th><th>${fmtMoney(totalExpenses)}</th><th class="${budgetedCount?moneyToneClass(totalResult):'finance-neutral'}">${budgetedCount?fmtMoney(totalResult):'—'}</th><th>—</th><th>${budgetedCount?`<span class="budget-status ${totalResult>=0?'positive':'negative'}">${totalResult>=0?'V pluse':'V strate'}</span>`:'—'}</th></tr></tbody></table>`;
 }
 
 function transferDateLabel(value){
@@ -804,6 +815,63 @@ function financeEvents(){
  return events.sort((a,b)=>transferDateSortKey(a.type==='in'?a.player.arrival:a.player.departure)-transferDateSortKey(b.type==='in'?b.player.arrival:b.player.departure)||(a.type===b.type?0:(a.type==='in'?-1:1))||String(a.player.name).localeCompare(String(b.player.name),'sk'));
 }
 
+// One shared scope makes the season and transfer-direction filters apply to every finance calculation.
+function financeFilterContext(){
+ const sc=getSeasonCount();
+ const seasonValue=document.getElementById('financeSeasonFilter')?.value||'all';
+ const transferType=document.getElementById('financeTransferFilter')?.value||'both';
+ const selected=seasonValue==='all'?null:Number(seasonValue);
+ const allPlayers=financePlayers();
+ const allEvents=financeEvents();
+ const filteredEvents=allEvents.filter(e=>(selected===null||e.season===selected)&&(transferType==='both'||e.type===transferType));
+ let eligibleIds=null;
+ if(transferType==='in')eligibleIds=new Set(filteredEvents.filter(e=>e.type==='in').map(e=>e.player.playerId));
+ else if(transferType==='out')eligibleIds=new Set(filteredEvents.filter(e=>e.type==='out').map(e=>e.player.playerId));
+ const players=allPlayers.filter(p=>!eligibleIds||eligibleIds.has(p.playerId)).map(p=>{
+  const scoped={...p};
+  for(let season=1;season<=sc;season++){
+   if(selected!==null&&season!==selected){
+    scoped['salary'+season]=0;
+    for(const [,abbr] of BASE)scoped[abbr+season]=0;
+   }
+  }
+  const arrivalSeason=seasonIndex(p.arrival),departureSeason=seasonIndex(p.departure,true);
+  if(transferType==='out'||(selected!==null&&arrivalSeason!==selected)){
+   scoped.arrival='';scoped.price='';scoped.lastClub='';
+  }
+  if(transferType==='in'||(selected!==null&&departureSeason!==selected)){
+   scoped.departure='';scoped.sale='';scoped.leftTo='';
+  }
+  return scoped;
+ });
+ const playersById=new Map(players.map(p=>[p.playerId,p]));
+ const events=filteredEvents.map(e=>({...e,player:playersById.get(e.player.playerId)||e.player}));
+ return {
+  sc,selected,transferType,players,events,
+  incoming:events.filter(e=>e.type==='in'),
+  outgoing:events.filter(e=>e.type==='out')
+ };
+}
+function financeSeasonFinancials(season,scope){
+ const spend=scope.incoming.reduce((n,e)=>n+(e.season===season?e.fee:0),0);
+ const wages=scope.players.reduce((n,p)=>n+moneyNumber(p['salary'+season]),0);
+ const sales=scope.outgoing.reduce((n,e)=>n+(e.season===season?e.fee:0),0);
+ const rawBudget=state.seasonBudgets?.[season-1];
+ const hasBudget=rawBudget!==null&&rawBudget!==undefined&&rawBudget!==''&&Number.isFinite(Number(rawBudget));
+ const budget=hasBudget?Math.max(0,Number(rawBudget)||0):null;
+ const expenses=spend+wages,remaining=hasBudget?budget-expenses+sales:null;
+ const usage=hasBudget&&budget>0?expenses/budget*100:null;
+ const pairs=[];
+ for(const p of scope.players){
+  for(const comp of LEAF_COMPETITIONS){
+   const r=raw(p,comp.h,season),m=raw(p,comp.z,season);
+   if(r>0)pairs.push({r,m});
+  }
+ }
+ const teamRating=weightedRatingFromPairs(pairs),ratedMatches=pairs.reduce((n,x)=>n+x.m,0);
+ return {season,label:seasonLabel(season),budget,hasBudget,spend,wages,sales,expenses,remaining,usage,teamRating,ratedMatches,status:!hasBudget?'neutral':remaining>=0?'positive':'negative'};
+}
+
 function financeTableCard(title, headers, data, note='', guide=''){
  const moneyHints=/€|%|M$|k$/i;
  const cells=data.length?data.map(r=>`<tr>${r.map(v=>{const full=String(v??''),money=moneyHints.test(full);return `<td><div class="finance-cell-scroll ${money?'money-cell':'long-text'}" data-fulltext="${esc(full)}" title="${esc(full)}">${esc(full)}</div></td>`}).join('')}</tr>`).join(''):`<tr><td colspan="${headers.length}">Bez údajov pre túto metriku</td></tr>`;
@@ -814,23 +882,21 @@ function financeMetric(label,value,sub='',tone=''){
 }
 
 function renderFinanceHub(){
- const sc=getSeasonCount();
- const players=financePlayers(),events=financeEvents();
- const sf=document.getElementById('financeSeasonFilter')?.value||'all',tf=document.getElementById('financeTransferFilter')?.value||'both',selected=sf==='all'?null:Number(sf);
- const incoming=events.filter(e=>e.type==='in'),outgoing=events.filter(e=>e.type==='out');
+ const scope=financeFilterContext();
+ const {sc,players,events,incoming,outgoing,selected,transferType:tf}=scope;
  const sumArr=a=>a.reduce((n,x)=>n+x,0);
  const allSpend=sumArr(incoming.map(e=>e.fee)),allSales=sumArr(outgoing.map(e=>e.fee)),allWages=sumArr(players.flatMap(p=>SALARIES.map(x=>moneyNumber(p[x.key]))));
-
- const seasons=Array.from({length:sc},(_,i)=>{
-  const n=i+1,ins=incoming.filter(e=>e.season===n),outs=outgoing.filter(e=>e.season===n);
-  const spend=sumArr(ins.map(e=>e.fee)),sales=sumArr(outs.map(e=>e.fee)),wages=sumArr(players.map(p=>moneyNumber(p['salary'+n])));
-  const budget=seasonFinancials(n);
+ const seasonNumbers=selected===null?Array.from({length:sc},(_,i)=>i+1):[selected];
+ const seasons=seasonNumbers.map(n=>{
+  const ins=incoming.filter(e=>e.season===n),outs=outgoing.filter(e=>e.season===n);
+  const financials=financeSeasonFinancials(n,scope);
   const seasonGoals=sumArr(players.map(p=>seasonValue(p,'G',n,'GC')));
   const seasonAssists=sumArr(players.map(p=>seasonValue(p,'A',n,'AC')));
   const seasonApps=sumArr(players.map(p=>seasonValue(p,'Z',n,'ZC')));
-  return {n,label:seasonLabel(n),ins,outs,spend,sales,wages,net:sales-spend-wages,totalCost:spend+wages,volume:spend+sales,budget:budget.budget,hasBudget:budget.hasBudget,budgetRemaining:budget.remaining,budgetUsage:budget.usage,budgetStatus:budget.status,teamRating:budget.teamRating,ratedMatches:budget.ratedMatches,seasonGoals,seasonAssists,seasonApps};
+  return {n,label:seasonLabel(n),ins,outs,spend:financials.spend,sales:financials.sales,wages:financials.wages,net:financials.sales-financials.spend-financials.wages,totalCost:financials.spend+financials.wages,volume:financials.spend+financials.sales,budget:financials.budget,hasBudget:financials.hasBudget,budgetRemaining:financials.remaining,budgetUsage:financials.usage,budgetStatus:financials.status,teamRating:financials.teamRating,ratedMatches:financials.ratedMatches,seasonGoals,seasonAssists,seasonApps};
  });
- const filteredSeasons=selected?seasons.filter(x=>x.n===selected):seasons;
+ const filteredSeasons=seasons;
+ const analysisSeasonCount=Math.max(1,filteredSeasons.length);
 
  const wagesByPosition={};
  for(const p of players){
@@ -863,7 +929,7 @@ function renderFinanceHub(){
  const topSeller=[...players].map(p=>({p,total:outgoing.filter(e=>e.player.playerId===p.playerId).reduce((a,e)=>a+e.fee,0)})).sort((a,b)=>b.total-a.total)[0];
  const bestNet=[...seasons].sort((a,b)=>b.net-a.net)[0],worstNet=[...seasons].sort((a,b)=>a.net-b.net)[0],maxSpend=[...seasons].sort((a,b)=>b.spend-a.spend)[0],maxWages=[...seasons].sort((a,b)=>b.wages-a.wages)[0];
  const avgWagePerPlayerSeason=salaryRecords.length?allWages/salaryRecords.length:0;
- const budgetedSeasons=seasons.filter(x=>x.hasBudget),budgetTotal=sumArr(budgetedSeasons.map(x=>x.budget)),budgetResult=sumArr(budgetedSeasons.map(x=>x.budgetRemaining)),overBudgetCount=budgetedSeasons.filter(x=>x.budgetRemaining<0).length;
+ const budgetedSeasons=filteredSeasons.filter(x=>x.hasBudget),budgetTotal=sumArr(budgetedSeasons.map(x=>x.budget)),budgetResult=sumArr(budgetedSeasons.map(x=>x.budgetRemaining)),overBudgetCount=budgetedSeasons.filter(x=>x.budgetRemaining<0).length;
 
  // Comprehensive Player Economics & Rating Analytics
  const playerEconomics=players.map(p=>{
@@ -986,21 +1052,21 @@ function renderFinanceHub(){
   financeMetric('Najdrahší príchod',highestIn?fmtMoney(highestIn.fee):'—',highestIn?`${highestIn.player.name} · ${seasonLabel(highestIn.season)}`:'bez údajov'),
   financeMetric('Najdrahší odchod',highestOut?fmtMoney(highestOut.fee):'—',highestOut?`${highestOut.player.name} · ${seasonLabel(highestOut.season)}`:'bez údajov'),
   financeMetric('Hráč s najvyššími platmi spolu',highestCareerWage&&highestCareerWage.total>0?fmtMoney(highestCareerWage.total):'—',highestCareerWage?highestCareerWage.p.name:'bez údajov'),
-  financeMetric('Zadané rozpočty spolu',budgetedSeasons.length?fmtMoney(budgetTotal):'—',`${budgetedSeasons.length}/${sc} sezón`),
+  financeMetric('Zadané rozpočty spolu',budgetedSeasons.length?fmtMoney(budgetTotal):'—',`${budgetedSeasons.length}/${analysisSeasonCount} sezón`),
   financeMetric('Zostatok oproti rozpočtom',budgetedSeasons.length?fmtMoney(budgetResult):'—',budgetResult>=0?'v pluse':'v strate',budgetedSeasons.length?(budgetResult>=0?'positive':'negative'):''),
   financeMetric('Sezóny nad rozpočtom',String(overBudgetCount),`${budgetedSeasons.length} sezón s rozpočtom`)
  ].join('');
 
- renderSeasonBudgets();
+ renderSeasonBudgets(scope);
  const st=document.getElementById('financeSeasonTable');
  if(st)st.innerHTML=`<table class="finance-table"><thead><tr><th>Sezóna</th><th>Rozpočet</th><th>Nákupy</th><th>Platy</th><th>Predaje</th><th>Saldo bez rozpočtu</th><th>Zostatok rozpočtu</th><th>Čerpanie</th><th>Priem. hodnotenie tímu</th><th>Hodnotené záp.</th><th>Góly + Asist.</th><th>Príchody / Odchody</th></tr></thead><tbody>${filteredSeasons.map(x=>`<tr><td>${x.label}</td><td>${x.hasBudget?fmtMoney(x.budget):'—'}</td><td>${fmtMoney(x.spend)}</td><td>${fmtMoney(x.wages)}</td><td class="finance-positive">${fmtMoney(x.sales)}</td><td class="${moneyToneClass(x.net)}">${fmtMoney(x.net)}</td><td class="${x.hasBudget?moneyToneClass(x.budgetRemaining):'finance-neutral'}">${x.hasBudget?fmtMoney(x.budgetRemaining):'—'}</td><td>${x.budgetUsage===null?'—':x.budgetUsage.toFixed(1)+' %'}</td><td class="${ratingClass(x.teamRating)}">${fmtRating(x.teamRating)}</td><td>${x.ratedMatches}</td><td>${x.seasonGoals + x.seasonAssists} (${x.seasonGoals}+${x.seasonAssists})</td><td>${x.ins.length} / ${x.outs.length}</td></tr>`).join('')}</tbody></table><div class="finance-guide"><strong>Ako čítať finančný a výkonnostný vývoj</strong><p>Kombinuje rozpočet, prestupy a platy s priemerným váženým hodnotením tímu v danej sezóne a celkovou ofenzívnou produkciou (G+A).</p></div>`;
 
- const eventList=events.filter(e=>(!selected||e.season===selected)&&(tf==='both'||tf===e.type));
+ const eventList=events;
  const grouped=new Map();
  for(const e of eventList){if(!grouped.has(e.season))grouped.set(e.season,[]);grouped.get(e.season).push(e)}
  const tr=document.getElementById('financeTransfers');
  if(tr){
-  tr.innerHTML=(grouped.size?[...grouped.entries()].map(([n,list])=>`<div class="finance-card" style="margin-bottom:9px"><h3>${seasonLabel(n)} <span class="muted">· ${list.length} ${list.length===1?'prestup':list.length<5?'prestupy':'prestupov'}</span></h3>${list.map(e=>{const rAvg=sum(e.player,'H');return `<div class="finance-transfer"><div><b>${e.type==='in'?'⬇ PRÍCHOD':'⬆ ODCHOD'} · ${esc(e.player.name)}</b><small>${esc(e.date)} · ${e.type==='in'?'Z:':'Do:'} ${esc(e.club)} · ${esc(financePosition(e.player))} · Kariérne hodnotenie: ${fmtRating(rAvg)}</small></div><strong>${fmtMoney(e.fee)}</strong></div>`}).join('')}</div>`).join(''):'<div class="finance-empty">Pre zvolený filter nie sú evidované žiadne prestupy.</div>')+`<div class="finance-guide"><strong>Ako čítať zoznam prestupov</strong><p>Prestupy sú rozdelené podľa sezóny a doplnené o kariérne vážené hodnotenie daného hráča.</p></div>`;
+  tr.innerHTML=(grouped.size?[...grouped.entries()].map(([n,list])=>`<div class="finance-card" style="margin-bottom:9px"><h3>${seasonLabel(n)} <span class="muted">· ${list.length} ${list.length===1?'prestup':list.length<5?'prestupy':'prestupov'}</span></h3>${list.map(e=>{const rAvg=sum(e.player,'H');return `<div class="finance-transfer"><div><b>${e.type==='in'?'⬇ PRÍCHOD':'⬆ ODCHOD'} · ${esc(e.player.name)}</b><small>${esc(e.date)} · ${e.type==='in'?'Z:':'Do:'} ${esc(e.club)} · ${esc(financePosition(e.player))} · ${selected===null?'Kariérne hodnotenie':'Hodnotenie vo výbere'}: ${fmtRating(rAvg)}</small></div><strong>${fmtMoney(e.fee)}</strong></div>`}).join('')}</div>`).join(''):'<div class="finance-empty">Pre zvolený filter nie sú evidované žiadne prestupy.</div>')+`<div class="finance-guide"><strong>Ako čítať zoznam prestupov</strong><p>Prestupy sú rozdelené podľa zvoleného rozsahu a doplnené o vážené hodnotenie hráča v rovnakom rozsahu.</p></div>`;
  }
 
  const analysis=document.getElementById('financeAnalysis');
@@ -1053,6 +1119,7 @@ function renderFinanceHub(){
   return [pos,fmtMoney(o.feesIn),fmtMoney(o.wages),fmtMoney(o.feesOut),fmtMoney(o.feesOut-o.feesIn-o.wages),fmtRating(posAvg)];
  });
 
+ const transferRatingLabel=selected===null?'Kariérne H':'Hodnotenie vo výbere';
  const biggestBuyers=[...incoming].sort((a,b)=>b.fee-a.fee).map(e=>[e.player.name,seasonLabel(e.season),e.club,fmtMoney(e.fee),fmtRating(sum(e.player,'H'))]);
  const biggestSellers=[...outgoing].sort((a,b)=>b.fee-a.fee).map(e=>[e.player.name,seasonLabel(e.season),e.club,fmtMoney(e.fee),fmtRating(sum(e.player,'H'))]);
  const topEarners=[...players].map(p=>({p,total:moneyNumber(p.sale)})).filter(x=>x.total>0).sort((a,b)=>b.total-a.total).map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.total),x.p.departure?transferDateLabel(x.p.departure):'—',fmtRating(sum(x.p,'H'))]);
@@ -1157,7 +1224,7 @@ function renderFinanceHub(){
  );
 
  html+=financeTableCard(
-  'Najviac elitných (8.00+) a dobrých (7.00+) zápasov v kariére',
+  selected===null?'Najviac elitných (8.00+) a dobrých (7.00+) zápasov v kariére':'Najviac elitných (8.00+) a dobrých (7.00+) zápasov vo vybranej sezóne',
   ['Hráč','Post','Zápasy 8.00+','Zápasy 7.00–7.99','Spolu 7.00+','Podiel 7.00+ zo záp.','Priem. H'],
   mostGoodMatches.map(x=>{const m7=x.rs.goodMatches7Plus+x.rs.eliteMatches8Plus;const share=x.rs.totalRatedMatches>0?(m7/x.rs.totalRatedMatches*100).toFixed(1)+' %':'—';return [x.p.name,financePosition(x.p),String(x.rs.eliteMatches8Plus),String(x.rs.goodMatches7Plus),String(m7),share,fmtRating(x.rs.avgRating)]}),
   'Poradie hráčov podľa celkového objemu nadpriemerných zápasov (7.00+) a ich percentuálneho podielu.'
@@ -1282,13 +1349,13 @@ function renderFinanceHub(){
 
  html+=financeTableCard(
   'Najväčšie nákupy – všetci hráči',
-  ['Hráč','Sezóna','Predchádzajúci klub','Cena','Kariérne H'],
+  ['Hráč','Sezóna','Predchádzajúci klub','Cena',transferRatingLabel],
   biggestBuyers
  );
 
  html+=financeTableCard(
   'Najdrahšie predaje – všetci hráči',
-  ['Hráč','Sezóna','Nový klub','Predajná suma','Kariérne H'],
+  ['Hráč','Sezóna','Nový klub','Predajná suma',transferRatingLabel],
   biggestSellers
  );
 
@@ -1312,7 +1379,7 @@ function renderFinanceHub(){
 
  html+=financeTableCard(
   'Hráči, na ktorých sme najviac zarobili (Predajná suma)',
-  ['Hráč','Post','Predajná suma','Odchod','Kariérne H'],
+  ['Hráč','Post','Predajná suma','Odchod',transferRatingLabel],
   topEarners
  );
 
@@ -1378,7 +1445,7 @@ function renderFinanceHub(){
  html+=`</div>`;
 
  // SECTION 5: SALARIES & MACRO SUMMARY
- html+=`<div class="finance-section-title"><h2>5. Mzdové rebríčky a súhrnné makro-ukazovatele kariéry</h2><span class="muted">Individuálne platy, rozpočtová disciplína a celkové štatistiky klubu</span></div><div class="finance-grid">`;
+ html+=`<div class="finance-section-title"><h2>5. Mzdové rebríčky a súhrnné makro-ukazovatele</h2><span class="muted">Rozsah: ${selected===null?'všetky sezóny':seasonLabel(selected)} · individuálne platy, rozpočtová disciplína a štatistiky klubu</span></div><div class="finance-grid">`;
 
  html+=financeTableCard(
   'Najvyššie individuálne ročné platy – všetky záznamy',
@@ -1387,21 +1454,21 @@ function renderFinanceHub(){
  );
 
  html+=financeTableCard(
-  'Celkové kariérne platy hráčov – všetci hráči',
+  selected===null?'Celkové kariérne platy hráčov – všetci hráči':'Celkové platy hráčov vo vybranej sezóne',
   ['Hráč','Post','Platy spolu','Platené sezóny','Priemer za platenú sezónu','Priem. H'],
   allHighestSalary.map(x=>[x.p.name,financePosition(x.p),fmtMoney(x.total),String(x.paidSeasons),fmtMoney(x.paidSeasons?x.total/x.paidSeasons:0),fmtRating(sum(x.p,'H'))])
  );
 
  html+=financeTableCard(
-  'Súhrnné makro-ukazovatele a pomery kariéry',
+  'Súhrnné makro-ukazovatele a pomery vo vybranom rozsahu',
   ['Ukazovateľ','Výsledok'],
   [
    ['Saldo samotných prestupov',fmtMoney(feeBalance)],
    ['Predaje / nákupy',allSpend?((allSales/allSpend)*100).toFixed(1)+' %':'N/A'],
    ['Podiel platov na nákladoch',wageShare.toFixed(1)+' %'],
    ['Pokrytie nákladov predajmi',saleCoverage.toFixed(1)+' %'],
-   ['Priemerný počet nákupov za sezónu',(incoming.length/sc).toFixed(1)],
-   ['Priemerný počet predajov za sezónu',(outgoing.length/sc).toFixed(1)],
+   ['Priemerný počet nákupov za sezónu',(incoming.length/analysisSeasonCount).toFixed(1)],
+   ['Priemerný počet predajov za sezónu',(outgoing.length/analysisSeasonCount).toFixed(1)],
    ['Prestupové sumy spolu (nákupy + predaje)',fmtMoney(totalTransferFees)],
    ['Hráči s aspoň jedným zadaným platom',String(playersWithWages)],
    ['Počet zaplatených hráčsko-sezón',String(paidSeasonCount)],
@@ -1423,7 +1490,7 @@ function renderFinanceHub(){
   'Efektivita sezónnych rozpočtov',
   ['Ukazovateľ','Výsledok'],
   [
-   ['Počet sezón so zadaným rozpočtom',`${budgetedSeasons.length} z ${sc}`],
+   ['Počet sezón so zadaným rozpočtom',`${budgetedSeasons.length} z ${analysisSeasonCount}`],
    ['Pôvodné rozpočty spolu',budgetedSeasons.length?fmtMoney(budgetTotal):'—'],
    ['Zostatok v rámci zadaných rozpočtov',budgetedSeasons.length?fmtMoney(budgetResult):'—'],
    ['Počet sezón s prekročeným rozpočtom',String(overBudgetCount)],
